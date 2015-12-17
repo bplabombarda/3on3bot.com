@@ -3,4 +3,5 @@ node_modules
 *.pyc
 team_twitter_info.csv
 team_video_info.csv
-
+schedule.json
+config.py
