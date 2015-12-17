@@ -1,0 +1,6 @@
+__pycache__
+node_modules
+*.pyc
+team_twitter_info.csv
+team_video_info.csv
+
