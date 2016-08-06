@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- Basic Page Needs
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <title>3ON3BOT</title>
+        <meta name="description" content="">
+        <meta name="author" content="Brett LaBombarda">
+
+        <!-- Mobile Specific Metas
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- FONT
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href='https://fonts.googleapis.com/css?family=Contrail+One' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/skeleton-css/css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/skeleton-css/css/skeleton.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+        <!-- Favicon
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png' )}}">
+
+    </head>
+    <body>
+
+        <!-- Header
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <header>
+            <div class="container">
+                <h1><a id="mainHeader" href="/">3ON3BOT</a><a id="twitterHeader" href="https://twitter.com/3on3bot"><i class="fa fa-twitter"></i></a></h1>
+
+            </div>
+        </header>
+
+        <!-- Primary Page Layout
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <section>
+            <div class="container">
+                <div class="row">
+
+                    <div class="twelve columns">
+
+                        <div class="videoContainer">
+                            <div class="videoWrapper">
+                                <iframe src="http://video.nhl.com/videocenter/embed?playlist=2015020546-801-h" frameborder="0"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="twelve columns">
+
+                        <div class="gameContainer">
+
+                            <h4>OT Games</h4>
+                            <!-- <h4>Basic Page</h4>
+                            <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p> -->
+
+                            <div class="row">
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/dal.png') }}" height="45px" width="45" alt="">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/ari.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/chi.png') }}" height="45px" width="45" alt="">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/min.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/fla.png') }}" height="45px" width="45" alt="">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/mon.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/ott.png') }}" height="45px" width="45" alt="">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/wpg.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/sjs.png') }}" height="45px" width="45" alt="">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/cgy.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/van.png') }}" height="45px" width="45" alt="">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/edm.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/nyi.png') }}" height="45px" width="45" alt="">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/wsh.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                                <div class="three columns">
+                                    <div class="game">
+                                        <span>3</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/car.png') }}" height="45px" width="45" alt="">
+                                        <span>2</span>
+                                        <img src="{{ url_for('static', filename='img/team_logos/tor.png') }}" height="45px" width="45" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    </body>
+</html>
