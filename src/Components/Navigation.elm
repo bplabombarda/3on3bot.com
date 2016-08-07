@@ -7,8 +7,8 @@ import Html.Attributes exposing (..)
 -- header component
 
 
-header : Html a -> Html b
-header model =
+navigation : Html a -> Html b
+navigation model =
     div
         [ class "h1" ]
         [ text ("Frigg off, Barb!") ]
