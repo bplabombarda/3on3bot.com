@@ -1,0 +1,15 @@
+{
+  "name": "elm3on3",
+  "version": "0.1.0",
+  "description": "Elm version of 3on3bot.com.",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brett LaBombarda",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "ace-css": "^1.1.0",
+    "font-awesome": "^4.6.3"
+  }
+}
