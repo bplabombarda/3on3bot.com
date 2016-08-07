@@ -6,6 +6,7 @@ import Html.Events exposing (..)
 import Html.App as App
 
 
+-- import Components.Header exposing (header)
 -- model
 
 

@@ -11,5 +11,13 @@
   "dependencies": {
     "ace-css": "^1.1.0",
     "font-awesome": "^4.6.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.22.0",
+    "webpack": "^1.13.1",
+    "webpack-merge": "^0.14.1"
   }
 }
