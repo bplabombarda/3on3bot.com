@@ -4,9 +4,9 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.App as App
+import Components.Navigation exposing (navigation)
 
 
--- import Components.Header exposing (header)
 -- model
 
 
@@ -45,7 +45,8 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h3 []
+        [ navigation
+        , h3 []
             [ text ("Total Calories: " ++ (toString model)) ]
         , button
             [ type' "button"
