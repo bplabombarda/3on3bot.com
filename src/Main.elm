@@ -1,6 +1,5 @@
 module Main exposing (..)
 
-import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -10,6 +9,7 @@ import Html.Events exposing (..)
 
 import TimeTravel.Html.App as TimeTravel
 import Components.Navigation exposing (navigation)
+import Components.Video exposing (videoPlayer)
 
 
 -- model
@@ -51,6 +51,10 @@ view : Model -> Html Msg
 view model =
     div []
         [ navigation
+        , div
+            [ class "vidContainer" ]
+            [ videoPlayer
+            ]
         , h3 []
             [ text ("Total Calories: " ++ (toString model)) ]
         , button
@@ -63,14 +67,6 @@ view model =
             , onClick Clear
             ]
             [ text "Clear" ]
-        , div
-            [ class "imgContainer" ]
-            [ img
-                [ src "./img/rosie.jpg"
-                , alt "Rosie"
-                ]
-                []
-            ]
         ]
 
 
