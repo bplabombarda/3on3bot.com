@@ -1,9 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+// pull in desired CSS/SASS files
+require( './styles/main.scss' );
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+// inject bundled Elm app into div#main
+var Elm = require( './Main' );
+Elm.Main.embed( document.getElementById( 'main' ) );
