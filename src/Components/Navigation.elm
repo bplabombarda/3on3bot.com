@@ -9,21 +9,23 @@ import Html.Attributes exposing (..)
 
 navigation : Html a
 navigation =
-    ul
-        [ class "navigation" ]
-        [ li
-            [ class "navitem" ]
-            [ text "Oct 20" ]
-        , li
-            [ class "navitem" ]
-            [ text "Oct 21" ]
-        , li
-            [ class "navitem" ]
-            [ text "Oct 22" ]
-        , li
-            [ class "navitem" ]
-            [ text "Oct 23" ]
-        , li
-            [ class "navitem" ]
-            [ text "Oct 24" ]
+    div [ id "navContainer" ]
+        [ ul
+            [ class "navigation" ]
+            [ li
+                [ class "navitem" ]
+                [ text "Oct 20" ]
+            , li
+                [ class "navitem" ]
+                [ text "Oct 21" ]
+            , li
+                [ class "navitem" ]
+                [ text "Oct 22" ]
+            , li
+                [ class "navitem" ]
+                [ text "Oct 23" ]
+            , li
+                [ class "navitem" ]
+                [ text "Oct 24" ]
+            ]
         ]
