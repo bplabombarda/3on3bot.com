@@ -3,7 +3,11 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Html.App as App
+
+
+-- import Html.App as App
+
+import TimeTravel.Html.App as TimeTravel
 import Components.Navigation exposing (navigation)
 
 
@@ -71,7 +75,8 @@ view model =
 
 main : Program Never
 main =
-    App.beginnerProgram
+    -- App.beginnerProgram
+    TimeTravel.beginnerProgram
         { model = initModel
         , update = update
         , view = view
