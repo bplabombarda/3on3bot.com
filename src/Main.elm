@@ -58,6 +58,14 @@ view model =
             , onClick Clear
             ]
             [ text "Clear" ]
+        , div
+            [ class "imgContainer" ]
+            [ img
+                [ src "./img/rosie.jpg"
+                , alt "Rosie"
+                ]
+                []
+            ]
         ]
 
 
