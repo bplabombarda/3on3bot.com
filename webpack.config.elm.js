@@ -21,10 +21,11 @@ var commonConfig = {
 
     resolve: {
         modulesDirectories: ['node_modules'],
-        extensions:         ['', '.js', '.jsx']
+        extensions:                 ['', '.js', '.elm']
     },
 
     module: {
+        noParse: /\.elm$/,
         loaders: [
             {
                 test: /\.(eot|ttf|woff|woff2|svg)$/,
@@ -38,14 +39,7 @@ var commonConfig = {
             template: 'src/index.html',
             inject:     'body',
             filename: 'index.html'
-        }),
-        /**
-         * This plugin assigns the module and chunk ids by occurence count. What this
-         * means is that frequently used IDs will get lower/shorter IDs - so they become
-         * more predictable.
-         */
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        })
     ],
 
     postcss: [ autoprefixer( { browsers: ['last 2 versions'] } ) ],
@@ -57,8 +51,6 @@ if ( TARGET_ENV === 'development' ) {
     console.log( 'Serving locally...');
 
     module.exports = merge( commonConfig, {
-
-        devtool: 'cheap-module-eval-source-map',
 
         entry: [
             'webpack-dev-server/client?http://localhost:8080',
@@ -73,16 +65,9 @@ if ( TARGET_ENV === 'development' ) {
         module: {
             loaders: [
                 {
-                    test: /\.js$/,
-                    loaders: ['react-hot', 'babel'],
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
-                },
-                {
-                    test: /\.jsx$/,
-                    loaders: ['react-hot', 'babel'],
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
+                    test:        /\.elm$/,
+                    exclude: [/elm-stuff/, /node_modules/],
+                    loader:    'elm-hot!elm-webpack?verbose=true&warn=true'
                 },
                 {
                     test: /\.(css|scss)$/,
@@ -105,23 +90,14 @@ if ( TARGET_ENV === 'production' ) {
 
     module.exports = merge( commonConfig, {
 
-        devtool: 'source-map',
-
         entry: path.join( __dirname, 'src/index.js' ),
 
         module: {
             loaders: [
                 {
-                    test: /\.js$/,
-                    loaders: ['react-hot', 'babel'],
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
-                },
-                {
-                    test: /\.jsx$/,
-                    loaders: ['react-hot', 'babel'],
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
+                    test:        /\.elm$/,
+                    exclude: [/elm-stuff/, /node_modules/],
+                    loader:    'elm-webpack'
                 },
                 {
                     test: /\.(css|scss)$/,
@@ -144,14 +120,19 @@ if ( TARGET_ENV === 'production' ) {
                     from: 'src/favicon.ico'
                 },
             ]),
+
+            new webpack.optimize.OccurenceOrderPlugin(),
+
             // extract CSS into a separate file
             new ExtractTextPlugin( './[hash].css', { allChunks: true } ),
+
             // minify & mangle JS/CSS
             new webpack.optimize.UglifyJsPlugin({
-                minimize:     true,
-                compressor: { warnings: false }
-                // mangle:    true
+                    minimize:     true,
+                    compressor: { warnings: false }
+                    // mangle:    true
             })
         ]
+
     });
 }
