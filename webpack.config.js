@@ -74,13 +74,13 @@ if ( TARGET_ENV === 'development' ) {
             loaders: [
                 {
                     test: /\.js$/,
-                    loaders: ['react-hot', 'babel'],
+                    loader: 'babel',
                     exclude: '/node_modules/',
                     include: path.join(__dirname, 'src')
                 },
                 {
                     test: /\.jsx$/,
-                    loaders: ['react-hot', 'babel'],
+                    loader: 'babel',
                     exclude: '/node_modules/',
                     include: path.join(__dirname, 'src')
                 },
@@ -113,13 +113,13 @@ if ( TARGET_ENV === 'production' ) {
             loaders: [
                 {
                     test: /\.js$/,
-                    loaders: ['react-hot', 'babel'],
+                    loader: 'babel',
                     exclude: '/node_modules/',
                     include: path.join(__dirname, 'src')
                 },
                 {
                     test: /\.jsx$/,
-                    loaders: ['react-hot', 'babel'],
+                    loader: 'babel',
                     exclude: '/node_modules/',
                     include: path.join(__dirname, 'src')
                 },
