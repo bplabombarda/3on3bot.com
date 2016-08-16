@@ -24,12 +24,22 @@ export default class App extends Component {
     handleDateChange(newDate) {
         this.setState({
             date: newDate
+        }, () => {
+            helpers.getOTGamesFromDate(this.state.date.format('YYYY-MM-DD'))
+                .then((response) => {
+                    console.log(response.data);
+                });
         });
     }
 
     init() {
         this.setState({
             date: moment()
+        }, () => {
+            helpers.getOTGamesFromDate(this.state.date.format('YYYY-MM-DD'))
+                .then((response) => {
+                    console.log(response.data);
+                });
         });
     }
 

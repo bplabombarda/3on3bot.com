@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const gameUrl = 'https://statsapi.web.nhl.com/api/v1/';
+const gameUrl = 'https://statsapi.web.nhl.com/api/v1';
 const mediaUrl = 'https://nhl.bamcontent.com/nhl/id/v1/';
 
 const helpers = {
