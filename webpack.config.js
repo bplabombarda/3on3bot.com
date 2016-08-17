@@ -27,6 +27,18 @@ var commonConfig = {
     module: {
         loaders: [
             {
+                test: /\.js$/,
+                loader: 'babel',
+                exclude: '/node_modules/',
+                include: path.join(__dirname, 'src')
+            },
+            {
+                test: /\.jsx$/,
+                loader: 'babel',
+                exclude: '/node_modules/',
+                include: path.join(__dirname, 'src')
+            },
+            {
                 test: /\.(eot|ttf|woff|woff2|svg)$/,
                 loader: 'file-loader'
             }
@@ -73,18 +85,6 @@ if ( TARGET_ENV === 'development' ) {
         module: {
             loaders: [
                 {
-                    test: /\.js$/,
-                    loader: 'babel',
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
-                },
-                {
-                    test: /\.jsx$/,
-                    loader: 'babel',
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
-                },
-                {
                     test: /\.(css|scss)$/,
                     loaders: [
                         'style-loader',
@@ -111,18 +111,6 @@ if ( TARGET_ENV === 'production' ) {
 
         module: {
             loaders: [
-                {
-                    test: /\.js$/,
-                    loader: 'babel',
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
-                },
-                {
-                    test: /\.jsx$/,
-                    loader: 'babel',
-                    exclude: '/node_modules/',
-                    include: path.join(__dirname, 'src')
-                },
                 {
                     test: /\.(css|scss)$/,
                     loader: ExtractTextPlugin.extract( 'style-loader', [

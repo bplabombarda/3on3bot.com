@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-// import Player from './Player/Player';
+import Player from './Player/Player';
 // import Games from './Games/Games';
 // import Game from './Game/Game';
-import Nav from './Nav/Nav';
 import helpers from '../utils/helpers';
 
 require('react-datepicker/dist/react-datepicker.min.css');
@@ -17,7 +16,11 @@ export default class App extends Component {
 
         this.state = {
             date: null,
-            content: ''
+            current: {
+                content: '',
+                topic: '',
+                slug: ''
+            }
         };
     }
 
@@ -25,9 +28,19 @@ export default class App extends Component {
         this.setState({
             date: newDate
         }, () => {
-            helpers.getOTGamesFromDate(this.state.date.format('YYYY-MM-DD'))
+            helpers.getGamesFromDate(this.state.date.format('YYYY-MM-DD'))
                 .then((response) => {
-                    console.log(response.data);
+                    let date = response.data.dates[0];
+                    if (date) {
+                        date.games.forEach((game) => {
+                            if (game.linescore.currentPeriod === 4) {
+                                console.log(game);
+                            }
+                        });
+                    } else {
+                        console.log('No games today!');
+                    }
+
                 });
         });
     }
@@ -36,9 +49,19 @@ export default class App extends Component {
         this.setState({
             date: moment()
         }, () => {
-            helpers.getOTGamesFromDate(this.state.date.format('YYYY-MM-DD'))
+            helpers.getGamesFromDate(this.state.date.format('YYYY-MM-DD'))
                 .then((response) => {
-                    console.log(response.data);
+                    let date = response.data.dates[0];
+                    if (date) {
+                        date.games.forEach((game) => {
+                            if (game.linescore.currentPeriod === 4) {
+                                console.log(game);
+                            }
+                        });
+                    } else {
+                        console.log('No games today!');
+                    }
+
                 });
         });
     }
@@ -50,13 +73,11 @@ export default class App extends Component {
     render() {
         return (
             <div className="container">
-                <Nav/>
                 <DatePicker
                     dateFormat="MM-DD-YY"
                     selected={moment(this.state.date)}
                     onChange={this.handleDateChange.bind(this)} />
-                <h1>3on3bot</h1>
-                <span>{ moment(this.state.date).format('MM-DD-YY') }</span>
+                <Player autostart={false} slug={'klingberg-picks-corner-in-ot'} topic={'277984386'} content={'41089003'}/>
             </div>
         );
     }
