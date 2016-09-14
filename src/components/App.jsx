@@ -28,14 +28,14 @@ export default class App extends Component {
                 .then((response) => {
                     let date = response.data.dates[0];
                     if (date) {
-                        let games = [];
                         date.games.forEach((game) => {
                             if (game.linescore.currentPeriod === 4) {
                                 console.log(game);
-                                games = [game, ...games];
+                                this.setState({
+                                    games: [game, ...this.state.games]
+                                });
                             }
                         });
-                        console.log(games);
                     } else {
                         console.log('No games today!');
                     }

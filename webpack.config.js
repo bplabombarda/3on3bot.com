@@ -133,7 +133,7 @@ if ( TARGET_ENV === 'production' ) {
                 },
             ]),
             // extract CSS into a separate file
-            new ExtractTextPlugin( './[hash].css', { allChunks: true } ),
+            new ExtractTextPlugin( './[hash].css', { allChunks: false } ),
             // minify & mangle JS/CSS
             new webpack.optimize.UglifyJsPlugin({
                 minimize:     true,
