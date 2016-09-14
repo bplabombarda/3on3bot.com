@@ -16,11 +16,7 @@ export default class App extends Component {
 
         this.state = {
             date: null,
-            current: {
-                content: '',
-                topic: '',
-                slug: ''
-            }
+            games: []
         };
     }
 
@@ -32,32 +28,14 @@ export default class App extends Component {
                 .then((response) => {
                     let date = response.data.dates[0];
                     if (date) {
+                        let games = [];
                         date.games.forEach((game) => {
                             if (game.linescore.currentPeriod === 4) {
                                 console.log(game);
+                                games = [game, ...games];
                             }
                         });
-                    } else {
-                        console.log('No games today!');
-                    }
-
-                });
-        });
-    }
-
-    init() {
-        this.setState({
-            date: moment()
-        }, () => {
-            helpers.getGamesFromDate(this.state.date.format('YYYY-MM-DD'))
-                .then((response) => {
-                    let date = response.data.dates[0];
-                    if (date) {
-                        date.games.forEach((game) => {
-                            if (game.linescore.currentPeriod === 4) {
-                                console.log(game);
-                            }
-                        });
+                        console.log(games);
                     } else {
                         console.log('No games today!');
                     }
@@ -67,7 +45,7 @@ export default class App extends Component {
     }
 
     componentWillMount() {
-        this.init();
+        this.handleDateChange(moment());
     }
 
     render() {
