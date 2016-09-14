@@ -1,0 +1,27 @@
+body {
+    color: #222;
+}
+
+.iframeContainer {
+    iframe {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 537px;
+    }
+}
+
+.react-datepicker__input-container {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 108px;
+    input {
+        border: none;
+        width: 108px;
+        font-size: 2em;
+        font-family: 'VT323';
+    }
+}
