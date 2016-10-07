@@ -1,27 +1,53 @@
 body {
-    color: #222;
+    color: #222222;
+    margin: 0;
 }
 
-.iframeContainer {
-    iframe {
+.container {
+    header {
+        font-family: 'VT323';
+        color: white;
+        padding: 10px;
+        margin-bottom: 2em;
+        background: #222222;
+        @media(max-width: 768px) {
+            margin-bottom: 0;
+        }
+        span.title {
+            display:inline-block;
+            float: left;
+            text-transform: uppercase;
+        }
+    }
+
+    .videoContainer {
+        text-align: center;
+        video {
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 768px;
+        }
+        .videoTitle {
+            text-transform: uppercase;
+
+        }
+    }
+
+    .react-datepicker__input-container {
         display: block;
         position: relative;
         margin: 0 auto;
         width: 100%;
-        max-width: 537px;
-    }
-}
-
-.react-datepicker__input-container {
-    display: block;
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 108px;
-    input {
-        border: none;
-        width: 108px;
-        font-size: 2em;
-        font-family: 'VT323';
+        max-width: 108px;
+        input {
+            color: white;
+            background-color: transparent;
+            border: none;
+            width: 108px;
+            font-size: 2em;
+            font-family: 'VT323';
+        }
     }
 }
