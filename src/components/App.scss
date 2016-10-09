@@ -1,15 +1,16 @@
 body {
-    color: #222222;
+    font-family: 'VT323';
+    color: #000;
     margin: 0;
+    background: white;
 }
 
 .container {
     header {
-        font-family: 'VT323';
-        color: white;
+        color: black;
         padding: 10px;
         margin-bottom: 2em;
-        background: #222222;
+        background: #fff;
         @media(max-width: 768px) {
             margin-bottom: 0;
         }
@@ -42,7 +43,7 @@ body {
         width: 100%;
         max-width: 108px;
         input {
-            color: white;
+            color: black;
             background-color: transparent;
             border: none;
             width: 108px;

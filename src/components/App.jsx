@@ -16,8 +16,31 @@ export default class App extends Component {
 
         this.state = {
             date: null,
-            otGames: []
+            oTGames: []
         };
+    }
+
+    getOTGames(games) {
+        if (games) {
+            let oTGames = [];
+            games.games.forEach((game) => {
+                if (game.linescore.currentPeriod === 4) {
+                    this.getGameMedia(game.content.link);
+                }
+            });
+            this.setState({
+                oTGames: oTGames
+            });
+        } else {
+            console.log('No games today!');
+        }
+    }
+
+    getGameMedia(link) {
+        helpers.getGameMedia(link)
+            .then((response) => {
+                console.log(response);
+            });
     }
 
     handleDateChange(newDate) {
@@ -26,60 +49,21 @@ export default class App extends Component {
         }, () => {
             helpers.getGamesFromDate(this.state.date.format('YYYY-MM-DD'))
                 .then((response) => {
-
-                    let gamesOnDate = response.data.dates[0];
-
-                    if (gamesOnDate) {
-
-                        let otGames = [];
-
-                        gamesOnDate.games.forEach((game) => {
-
-                            if (game.linescore.currentPeriod === 4) {
-
-                                let goalHighlights = game.content.highlights.scoreboard.items;
-                                let srcHighlight = goalHighlights[goalHighlights.length - 1];
-
-                                let oTGameObj = {
-                                    away: {
-                                        teamName: game.teams.away.team.teamName,
-                                        locationName: game.teams.away.team.locationName,
-                                        abbr: game.teams.away.team.abbreviation
-                                    },
-                                    home: {
-                                        teamName: game.teams.home.team.teamName,
-                                        locationName: game.teams.home.team.locationName,
-                                        abbr: game.teams.home.team.abbreviation
-                                    },
-                                    title: goalHighlights[goalHighlights.length - 1].title,
-                                    source: srcHighlight.playbacks[srcHighlight.playbacks.length - 1].url,
-                                };
-
-                                otGames = [oTGameObj, ...otGames];
-                            }
-                        });
-
-                        this.setState({
-                            otGames: otGames
-                        });
-
-                    } else {
-                        console.log('No games today!');
-                    }
-
+                    this.getOTGames(response.data.dates[0]);
                 });
         });
     }
 
     componentWillMount() {
-        this.handleDateChange(moment());
+        this.handleDateChange(moment('2016-02-21'));
     }
 
     render() {
         return (
             <div className="container">
-                <header>
 
+                <header>
+                
                     <DatePicker
                         dateFormat="MM-DD-YY"
                         selected={moment(this.state.date)}
@@ -88,8 +72,10 @@ export default class App extends Component {
 
                 </header>
 
-                <Player autostart={false} slug={'klingberg-picks-corner-in-ot'} topic={'277984386'} content={'41089003'}/>
-                
+                <Player source={ this.state.oTGames[0] ? this.state.oTGames[0].source : '' }
+                        title={ this.state.oTGames[0] ? this.state.oTGames[0].title : '' }
+                        />
+
             </div>
         );
     }
