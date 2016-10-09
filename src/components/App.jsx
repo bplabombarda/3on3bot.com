@@ -16,31 +16,69 @@ export default class App extends Component {
 
         this.state = {
             date: null,
-            oTGames: []
+            oTGoals: []
+        };
+    }
+
+    getOTGoal(allHighlights) {
+        let goalHighlights = [];
+
+        allHighlights.forEach((highlight, index) => {
+            if (highlight.type === 'GOAL') {
+                goalHighlights = [highlight, ...goalHighlights];
+            }
+        });
+
+        let playbacks = goalHighlights[0].highlight.playbacks;
+
+        return {
+            blurb: goalHighlights[0].highlight.blurb,
+            source: playbacks[playbacks.length - 2].url
         };
     }
 
     getOTGames(games) {
+        let oTGoals = [];
         if (games) {
-            let oTGames = [];
-            games.games.forEach((game) => {
+
+            games.games.forEach((game, index) => {
+
                 if (game.linescore.currentPeriod === 4) {
-                    this.getGameMedia(game.content.link);
+
+                    helpers.getGameMedia(game.content.link)
+                        .then((response) => {
+
+                            let allHighlights = response.data.media.milestones.items;
+                            let goalHighlights = [];
+
+                            allHighlights.forEach((highlight, index) => {
+                                if (highlight.type === 'GOAL') {
+                                    goalHighlights = [highlight, ...goalHighlights];
+                                }
+                            });
+
+                            let playbacks = goalHighlights[0].highlight.playbacks;
+
+                            let oTGoal = {
+                                blurb: goalHighlights[0].highlight.blurb,
+                                source: playbacks[playbacks.length - 2].url
+                            };
+
+                            return oTGoal;
+                        })
+                        .then((oTGoal) => {
+                            oTGoals.push(oTGoal);
+                        });
                 }
             });
+
             this.setState({
-                oTGames: oTGames
+                oTGoals: oTGoals
             });
+
         } else {
             console.log('No games today!');
         }
-    }
-
-    getGameMedia(link) {
-        helpers.getGameMedia(link)
-            .then((response) => {
-                console.log(response);
-            });
     }
 
     handleDateChange(newDate) {
@@ -55,7 +93,7 @@ export default class App extends Component {
     }
 
     componentWillMount() {
-        this.handleDateChange(moment('2016-02-21'));
+        this.handleDateChange(moment('2016-02-18'));
     }
 
     render() {
@@ -63,7 +101,7 @@ export default class App extends Component {
             <div className="container">
 
                 <header>
-                
+
                     <DatePicker
                         dateFormat="MM-DD-YY"
                         selected={moment(this.state.date)}
@@ -72,8 +110,8 @@ export default class App extends Component {
 
                 </header>
 
-                <Player source={ this.state.oTGames[0] ? this.state.oTGames[0].source : '' }
-                        title={ this.state.oTGames[0] ? this.state.oTGames[0].title : '' }
+                <Player highlight={ this.state.oTGoals }
+                        blurb={ this.state.oTGoals }
                         />
 
             </div>

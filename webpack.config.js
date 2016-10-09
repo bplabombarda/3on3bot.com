@@ -89,7 +89,6 @@ if ( TARGET_ENV === 'development' ) {
                     loaders: [
                         'style-loader',
                         'css-loader',
-                        'postcss-loader',
                         'sass-loader'
                     ]
                 }
