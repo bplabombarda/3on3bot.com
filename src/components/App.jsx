@@ -65,9 +65,6 @@ export default class App extends Component {
                             };
 
                             return oTGoal;
-                        })
-                        .then((oTGoal) => {
-                            oTGoals.push(oTGoal);
                         });
                 }
             });

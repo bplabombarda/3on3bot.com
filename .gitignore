@@ -42,4 +42,4 @@ jspm_packages
 
 # Dist
 dist
-*/min.css
+*.min.css
