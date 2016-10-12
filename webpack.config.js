@@ -73,6 +73,7 @@ if ( TARGET_ENV === 'development' ) {
         devtool: 'cheap-module-eval-source-map',
 
         entry: [
+            'whatwg-fetch',
             'webpack-dev-server/client?http://localhost:8080',
             path.join( __dirname, 'src/index.js' )
         ],
@@ -106,7 +107,10 @@ if ( TARGET_ENV === 'production' ) {
 
         devtool: 'source-map',
 
-        entry: path.join( __dirname, 'src/index.js' ),
+        entry: [
+            'whatwg-fetch',
+            path.join( __dirname, 'src/index.js' )
+        ],
 
         module: {
             loaders: [

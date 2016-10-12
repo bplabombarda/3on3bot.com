@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Player from './Player/Player';
-// import Games from './Games/Games';
-// import Game from './Game/Game';
 import helpers from '../utils/helpers';
 
 require('react-datepicker/dist/react-datepicker.min.css');
@@ -20,73 +18,48 @@ export default class App extends Component {
         };
     }
 
-    getOTGoal(allHighlights) {
-        let goalHighlights = [];
-
-        allHighlights.forEach((highlight, index) => {
-            if (highlight.type === 'GOAL') {
-                goalHighlights = [highlight, ...goalHighlights];
-            }
-        });
-
-        let playbacks = goalHighlights[0].highlight.playbacks;
-
-        return {
-            blurb: goalHighlights[0].highlight.blurb,
-            source: playbacks[playbacks.length - 2].url
-        };
-    }
-
-    getOTGames(games) {
-        let oTGoals = [];
-        if (games) {
-
-            games.games.forEach((game, index) => {
-
-                if (game.linescore.currentPeriod === 4) {
-
-                    helpers.getGameMedia(game.content.link)
-                        .then((response) => {
-
-                            let allHighlights = response.data.media.milestones.items;
-                            let goalHighlights = [];
-
-                            allHighlights.forEach((highlight, index) => {
-                                if (highlight.type === 'GOAL') {
-                                    goalHighlights = [highlight, ...goalHighlights];
-                                }
-                            });
-
-                            let playbacks = goalHighlights[0].highlight.playbacks;
-
-                            let oTGoal = {
-                                blurb: goalHighlights[0].highlight.blurb,
-                                source: playbacks[playbacks.length - 2].url
-                            };
-
-                            return oTGoal;
-                        });
-                }
-            });
-
-            this.setState({
-                oTGoals: oTGoals
-            });
-
-        } else {
-            console.log('No games today!');
-        }
-    }
-
     handleDateChange(newDate) {
         this.setState({
             date: newDate
         }, () => {
             helpers.getGamesFromDate(this.state.date.format('YYYY-MM-DD'))
                 .then((response) => {
-                    this.getOTGames(response.data.dates[0]);
+                    let oTGames = [];
+                    response.data.dates.forEach((date) => {
+                        date.games.forEach((game) => {
+                            if (game.linescore.currentPeriod === 4) {
+                                oTGames = [game, ...oTGames];
+                            }
+                        });
+                    });
+                    return oTGames;
+                })
+                .then((oTGames) => {
+                    let oTGoals = [];
+                    oTGames.forEach((oTGame) => {
+                        helpers.getGameMedia(oTGame.content.link)
+                            .then((response) => {
+                                const events = response.data.media.milestones.items;
+                                console.log(events);
+                                let goalEvents = [];
+                                events.forEach((event) => {
+                                    if (event.type === 'GOAL') {
+                                        console.log(event);
+                                        goalEvents = [event, ...goalEvents];
+                                    }
+                                });
+                                return goalEvents;
+                            })
+                            .then((goalEvents) => {
+                                console.log(goalEvents);
+                            });
+                    });
                 });
         });
+    }
+
+    getOTGoals(oTGames) {
+
     }
 
     componentWillMount() {
