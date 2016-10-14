@@ -40,26 +40,26 @@ export default class App extends Component {
                         helpers.getGameMedia(oTGame.content.link)
                             .then((response) => {
                                 const events = response.data.media.milestones.items;
-                                console.log(events);
                                 let goalEvents = [];
                                 events.forEach((event) => {
                                     if (event.type === 'GOAL') {
-                                        console.log(event);
                                         goalEvents = [event, ...goalEvents];
                                     }
                                 });
                                 return goalEvents;
                             })
                             .then((goalEvents) => {
-                                console.log(goalEvents);
+                                oTGoals = [goalEvents[0], ...oTGoals];
+                                return oTGoals;
+                            })
+                            .then((oTGoals) => {
+                                this.setState({
+                                    oTGoals: oTGoals
+                                });
                             });
                     });
                 });
         });
-    }
-
-    getOTGoals(oTGames) {
-
     }
 
     componentWillMount() {
@@ -80,9 +80,9 @@ export default class App extends Component {
 
                 </header>
 
-                <Player highlight={ this.state.oTGoals }
+                {/* <Player highlight={ this.state.oTGoals[0] }
                         blurb={ this.state.oTGoals }
-                        />
+                        /> */}
 
             </div>
         );
