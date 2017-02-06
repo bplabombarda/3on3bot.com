@@ -1,148 +1,155 @@
-var path              = require( 'path' );
-var webpack           = require( 'webpack' );
-var merge             = require( 'webpack-merge' );
-var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-var autoprefixer      = require( 'autoprefixer' );
-var ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-var CopyWebpackPlugin = require( 'copy-webpack-plugin' );
-
-console.log( 'WEBPACK GO!');
+const { resolve }       = require('path');
+const webpack           = require('webpack');
+const merge             = require('webpack-merge');
+const autoprefixer      = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // detemine build env
-var TARGET_ENV = process.env.npm_lifecycle_event === 'build' ? 'production' : 'development';
+var ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
-// common webpack config
-var commonConfig = {
-
+const commonConfig = {
     output: {
-        path:     path.resolve( __dirname, 'dist/' ),
-        filename: '[hash].js',
+      path:     resolve(__dirname, 'client/dist'),
+      pathinfo: !ENV.prod,
+      //  publicPath: '',
     },
 
-    resolve: {
-        modulesDirectories: ['node_modules'],
-        extensions:         ['', '.js', '.jsx']
-    },
+    context: resolve(__dirname),
+
+    devtool: ENV.prod ? 'source-map' : 'cheap-module-eval-source-map',
+
+    bail: ENV.prod,
 
     module: {
-        loaders: [
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          enforce: 'pre',
+          use: [
             {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: '/node_modules/',
-                include: path.join(__dirname, 'src')
-            },
-            {
-                test: /\.jsx$/,
-                loader: 'babel',
-                exclude: '/node_modules/',
-                include: path.join(__dirname, 'src')
-            },
-            {
-                test: /\.(eot|ttf|woff|woff2|svg)$/,
-                loader: 'file-loader'
+              loader: 'eslint-loader',
+              options: {
+                rules: { semi: 0 }
+              }
             }
-        ]
+          ]
+        },
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                  presets: ['react', 'es2015', 'stage-0']
+              },
+            }
+          ],
+        },
+        {
+          test: /\.(eot|ttf|woff|woff2|svg)$/,
+          use: 'file-loader'
+        }
+      ]
     },
 
     plugins: [
-        new HtmlWebpackPlugin({
-            template: 'src/index.html',
-            inject:     'body',
-            filename: 'index.html'
-        }),
-        /**
-         * This plugin assigns the module and chunk ids by occurence count. What this
-         * means is that frequently used IDs will get lower/shorter IDs - so they become
-         * more predictable.
-         */
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+      new HtmlWebpackPlugin({
+        template: 'client/src/index.html',
+        inject:   'body',
+        filename: '../dist/index.html'
+      }),
+      new webpack.LoaderOptionsPlugin({
+        test: /\.css|scss/,
+          options: {
+            postcss: [
+              autoprefixer({
+                browsers: ['last 2 versions']
+              })
+            ]
+          }
+      }),
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
     ],
 
-    postcss: [ autoprefixer( { browsers: ['last 2 versions'] } ) ],
-
-};
-
-// additional webpack settings for local env (when invoked by 'npm start')
-if ( TARGET_ENV === 'development' ) {
-    console.log( 'Serving locally...');
-
-    module.exports = merge( commonConfig, {
-
-        devtool: 'cheap-module-eval-source-map',
-
-        entry: [
-            'whatwg-fetch',
-            'webpack-dev-server/client?http://localhost:8080',
-            path.join( __dirname, 'src/index.js' )
-        ],
-
-        devServer: {
-            inline:   true,
-            progress: true
-        },
-
-        module: {
-            loaders: [
-                {
-                    test: /\.(css|scss)$/,
-                    loaders: [
-                        'style-loader',
-                        'css-loader',
-                        'sass-loader'
-                    ]
-                }
-            ]
-        }
-
-    });
+    resolve: {
+      extensions: [".js", ".json", ".jsx", ".css", ".scss"]
+    }
 }
 
-// additional webpack settings for prod env (when invoked via 'npm run build')
-if ( TARGET_ENV === 'production' ) {
-    console.log( 'Building for prod...');
+if ( ENV === 'dev') {
+  console.log( 'Serving locally...');
 
-    module.exports = merge( commonConfig, {
+  module.exports = merge( commonConfig, {
+    entry: [
+      'webpack-hot-middleware/client?reload=true',
+      resolve(__dirname, 'client/src/index.js'),
+    ],
 
-        devtool: 'source-map',
+    output: {
+      filename: 'js/bundle.js',
+      hotUpdateChunkFilename: 'hot/hot-update.js',
+      hotUpdateMainFilename: 'hot/hot-update.json',
+    },
 
-        entry: [
-            'whatwg-fetch',
-            path.join( __dirname, 'src/index.js' )
-        ],
+    module: {
+      rules: [
+        {
+          test: /\.(scss)$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+          ]
+        }
+      ]
+    },
+  });
+}
 
-        module: {
-            loaders: [
-                {
-                    test: /\.(css|scss)$/,
-                    loader: ExtractTextPlugin.extract( 'style-loader', [
-                        'css-loader',
-                        'postcss-loader',
-                        'sass-loader'
-                    ])
-                }
-            ]
+if ( ENV === 'prod') {
+  console.log( 'Building for prod...');
+
+  module.exports = merge( commonConfig, {
+    entry: resolve(__dirname, 'client/src/index.js'),
+
+    output: {
+      filename: 'js/[hash].js',
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.(scss)$/,
+          loader: ExtractTextPlugin.extract({
+            fallbackLoader: 'style-loader',
+            loader: 'css-loader'
+          })
+        }
+      ]
+    },
+
+    plugins: [
+      new CopyWebpackPlugin([
+        {
+          from: 'client/src/img/',
+          to:   'img/'
         },
-
-        plugins: [
-            new CopyWebpackPlugin([
-                {
-                    from: 'src/img/',
-                    to:     'img/'
-                },
-                {
-                    from: 'src/favicon.ico'
-                },
-            ]),
-            // extract CSS into a separate file
-            new ExtractTextPlugin( './[hash].css', { allChunks: false } ),
-            // minify & mangle JS/CSS
-            new webpack.optimize.UglifyJsPlugin({
-                minimize:     true,
-                compressor: { warnings: false }
-                // mangle:    true
-            })
-        ]
-    });
+      ]),
+      new webpack.optimize.UglifyJsPlugin({
+        minimize:   true,
+        compressor: { warnings: false }
+        // mangle:  true
+      }),
+      new ExtractTextPlugin({
+        filename: 'css/[hash].css',
+        allChunks: false
+      }),
+    ],
+  });
 }
