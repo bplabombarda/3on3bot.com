@@ -30,6 +30,7 @@ export default class App extends Component {
     }, () => {
       helpers.getGamesFromDate(this.state.date.format('YYYY-MM-DD'))
         .then((response) => {
+          // TODO: Break into a helper method.
           let oTGames = [];
           response.data.dates.forEach((date) => {
             date.games.forEach((game) => {
@@ -41,29 +42,33 @@ export default class App extends Component {
           return oTGames;
         })
         .then((oTGames) => {
-          let oTGoals = [];
-          oTGames.forEach((oTGame) => {
-            helpers.getGameMedia(oTGame.content.link)
-              .then((response) => {
-                const events = response.data.media.milestones.items;
-                let goalEvents = [];
-                events.forEach((event) => {
-                  if (event.type === 'GOAL') {
-                    goalEvents = [event, ...goalEvents];
-                  }
-                });
-                return goalEvents;
-              })
-              .then((goalEvents) => {
-                oTGoals = [goalEvents[0], ...oTGoals];
-                return oTGoals;
-              })
-              .then((goals) => {
-                this.setState({
-                  oTGoals: goals,
-                });
-              });
-          });
+          // TODO: Break into a helper method.
+          // let oTGoals = [];
+          // oTGames.forEach((oTGame) => {
+          //   helpers.getGameMedia(oTGame.content.link)
+          //     .then((response) => {
+          //       // TODO: Break into a helper method.
+          //       const events = response.data.media.milestones.items;
+          //       let goalEvents = [];
+          //       events.forEach((event) => {
+          //         if (event.type === 'GOAL') {
+          //           goalEvents = [event, ...goalEvents];
+          //         }
+          //       });
+          //       return goalEvents;
+          //     })
+          //     .then((goalEvents) => {
+          //       oTGoals = [goalEvents[0], ...oTGoals];
+          //       return oTGoals;
+          //     })
+          //     .then((goals) => {
+          //       this.setState({
+          //         oTGoals: goals,
+          //       });
+          //     });
+          // });
+
+          helpers.findVideoSource(oTGames);
         });
     });
   }

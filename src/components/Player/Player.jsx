@@ -8,6 +8,8 @@ function Player(props) {
       <iframe
         id="vidFrame"
         src={props.source}
+        height="360"
+        width="640"
         frameBorder="0"
         scrolling="no"
         allowFullScreen
@@ -23,7 +25,7 @@ Player.propTypes = {
 };
 
 Player.defaultProps = {
-  source: 'http://md-akc.med.nhl.com/mp4/nhl/2016/02/19/178ff968-2628-4dc6-ba9c-98112a15b7fe/1455854223047/asset_1800k.mp4',
+  source: 'media/jetsons.mp4',
   title: 'LAK@STL: Schwartz\'s overtime winner',
 };
 

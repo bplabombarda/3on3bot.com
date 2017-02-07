@@ -16,6 +16,49 @@ const helpers = {
   getGameMedia(link) {
     return axios.get(`${gameUrl + link}`);
   },
+
+  findOtGames(data) {
+    let oTGames = [];
+    data.dates.forEach((date) => {
+      date.games.forEach((game) => {
+        if (game.linescore.currentPeriod === 4) {
+          oTGames = [game, ...oTGames];
+        }
+      });
+    });
+    return oTGames;
+  },
+
+  findVideoSource(games) {
+    let oTGoals = [];
+    games.forEach((oTGame) => {
+      helpers.getGameMedia(oTGame.content.link)
+        .then((response) => {
+          const goalEvents = this.findGoalEvents(response);
+          return goalEvents;
+        })
+        .then((goalEvents) => {
+          oTGoals = [goalEvents[0], ...oTGoals];
+          return oTGoals;
+        })
+        .then((goals) => {
+          this.setState({
+            oTGoals: goals,
+          });
+        });
+    });
+  },
+
+  findGoalEvents(game) {
+    const events = game.data.media.milestones.items;
+    let goalEvents = [];
+    events.forEach((event) => {
+      if (event.type === 'GOAL') {
+        goalEvents = [event, ...goalEvents];
+      }
+    });
+    return goalEvents;
+  },
 };
 
 export default helpers;
