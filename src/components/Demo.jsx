@@ -7,7 +7,7 @@ function Demo() {
     <div className="mainContainer">
       <div id="mainHeader">Hang on! We are almost there!</div>
       <div className="imageContainer">
-        <img className="mainImage" alt="Work in progress!" src="../images/jetsons.gif" />
+        <img className="mainImage" alt="Work in progress!" src="/images/jetsons.gif" />
       </div>
     </div>
   );

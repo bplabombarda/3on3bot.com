@@ -3,27 +3,27 @@ body {
     color: white;
     margin: 0;
     background: #846A9A;
+}
 
-    .mainContainer {
-      display: block;
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-    }
+.mainContainer {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-    #mainHeader {
-      font-size: 2em;
-      padding: 1em;
-    }
+#mainHeader {
+  font-size: 2em;
+  padding: 1em;
+}
 
-    .imageContainer {
-      width: 100%;
-      max-width: 720px;
+.imageContainer {
+  width: 100%;
+  max-width: 720px;
 
-      .mainImage {
-        width: 100%;
-        height: auto;
-      }
-    }
+  .mainImage {
+    width: 100%;
+    height: auto;
+  }
 }
