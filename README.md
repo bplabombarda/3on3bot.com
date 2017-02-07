@@ -4,6 +4,7 @@
 
 ### What the heck do I do now?
 
+-  `yarn install`
 -  `npm start`: start development server.
 -  `npm run build`: clean `dist` directory and build app.
 -  `npm run watch`: watch with webpack.
