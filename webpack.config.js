@@ -50,7 +50,7 @@ const commonConfig = {
         ],
       },
       {
-        test: /\.(eot|ttf|woff|woff2|svg)$/,
+        test: /\.(eot|ttf|woff|woff2|svg|jpg|png)$/,
         use: 'file-loader'
       }
     ]
@@ -121,13 +121,14 @@ if ( ENV === 'prod') {
 
     module: {
       rules: [
-      {
-        test: /\.(css|scss)$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader',
-        })
-      }
+        {
+          test: /\.(css|scss)$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+          ]
+        }
       ]
     },
 
@@ -135,13 +136,13 @@ if ( ENV === 'prod') {
       new CopyWebpackPlugin([
         {
           from: 'src/images/',
-          to:   'img/'
+          to:   'images/'
         },
       ]),
-      new ExtractTextPlugin({
-        filename: 'css/[hash].css',
-        allChunks: false
-      }),
+      // new ExtractTextPlugin({
+      //   filename: 'css/[hash].css',
+      //   allChunks: false
+      // }),
       new webpack.optimize.UglifyJsPlugin({
         minimize:   true,
         compressor: { warnings: false }
