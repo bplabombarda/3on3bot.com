@@ -1,14 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 require('./Player.scss');
 
-export default class Player extends Component {
-    render() {
-        let url = `https://www.nhl.com/video/embed/${this.props.slug}/c-${this.props.content}?autostart=${this.props.autostart}`;
-        return (
-            <div className="iframeContainer">
-                <iframe src={url} width='540' height='304' frameBorder="0"></iframe>
-            </div>
-        );
-    }
+function Player(props) {
+  return (
+    <div id="frameContainer">
+      <iframe
+        id="vidFrame"
+        src={props.source}
+        height="360"
+        width="640"
+        frameBorder="0"
+        scrolling="no"
+        allowFullScreen
+      />
+      <h3 className="videoTitle">{props.title}</h3>
+    </div>
+  );
 }
+
+Player.propTypes = {
+  source: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
+};
+
+Player.defaultProps = {
+  source: 'media/jetsons.mp4',
+  title: 'LAK@STL: Schwartz\'s overtime winner',
+};
+
+module.exports = Player;

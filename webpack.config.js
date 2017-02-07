@@ -1,145 +1,152 @@
-var path              = require( 'path' );
-var webpack           = require( 'webpack' );
-var merge             = require( 'webpack-merge' );
-var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-var autoprefixer      = require( 'autoprefixer' );
-var ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
-var CopyWebpackPlugin = require( 'copy-webpack-plugin' );
-
-console.log( 'WEBPACK GO!');
+const { resolve }       = require('path');
+const webpack           = require('webpack');
+const merge             = require('webpack-merge');
+const autoprefixer      = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // detemine build env
-var TARGET_ENV = process.env.npm_lifecycle_event === 'build' ? 'production' : 'development';
+var ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
-// common webpack config
-var commonConfig = {
+const commonConfig = {
+  output: {
+    path:   resolve(__dirname, 'dist'),
+    pathinfo: !ENV.prod,
+    //  publicPath: '',
+  },
+
+  context: resolve(__dirname),
+
+  devtool: ENV.prod ? 'source-map' : 'cheap-module-eval-source-map',
+
+  bail: ENV.prod,
+
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              rules: { semi: 0 }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'es2015', 'stage-0']
+          },
+        }
+        ],
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2|svg)$/,
+        use: 'file-loader'
+      }
+    ]
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject:   'body',
+      filename: 'index.html'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.css|scss/,
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: ['last 2 versions']
+          })
+        ]
+      }
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
+
+  resolve: {
+    extensions: [".js", ".json", ".jsx", ".css", ".scss"]
+  }
+}
+
+if ( ENV === 'dev') {
+  console.log( 'Serving locally...');
+
+  module.exports = merge( commonConfig, {
+    entry: [
+      'webpack-dev-server/client?http://localhost:8080',
+      resolve(__dirname, 'src/index.js'),
+    ],
 
     output: {
-        path:             path.resolve( __dirname, 'dist/' ),
-        filename: '[hash].js',
-    },
-
-    resolve: {
-        modulesDirectories: ['node_modules'],
-        extensions:         ['', '.js', '.jsx']
+      filename: 'js/bundle.js',
     },
 
     module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: '/node_modules/',
-                include: path.join(__dirname, 'src')
-            },
-            {
-                test: /\.jsx$/,
-                loader: 'babel',
-                exclude: '/node_modules/',
-                include: path.join(__dirname, 'src')
-            },
-            {
-                test: /\.(eot|ttf|woff|woff2|svg)$/,
-                loader: 'file-loader'
-            }
-        ]
+      rules: [
+        {
+          test: /\.(css|scss)$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+          ]
+        }
+      ]
+    },
+  });
+}
+
+if ( ENV === 'prod') {
+  console.log( 'Building for prod...');
+
+  module.exports = merge( commonConfig, {
+    entry: resolve(__dirname, 'src/index.js'),
+
+    output: {
+      filename: 'js/[hash].js',
+    },
+
+    module: {
+      rules: [
+      {
+        test: /\.(css|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader',
+        })
+      }
+      ]
     },
 
     plugins: [
-        new HtmlWebpackPlugin({
-            template: 'src/index.html',
-            inject:     'body',
-            filename: 'index.html'
-        }),
-        /**
-         * This plugin assigns the module and chunk ids by occurence count. What this
-         * means is that frequently used IDs will get lower/shorter IDs - so they become
-         * more predictable.
-         */
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+      new CopyWebpackPlugin([
+        {
+          from: 'src/images/',
+          to:   'img/'
+        },
+      ]),
+      new ExtractTextPlugin({
+        filename: 'css/[hash].css',
+        allChunks: false
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        minimize:   true,
+        compressor: { warnings: false }
+        // mangle:  true
+      }),
     ],
-
-    postcss: [ autoprefixer( { browsers: ['last 2 versions'] } ) ],
-
-};
-
-// additional webpack settings for local env (when invoked by 'npm start')
-if ( TARGET_ENV === 'development' ) {
-    console.log( 'Serving locally...');
-
-    module.exports = merge( commonConfig, {
-
-        devtool: 'cheap-module-eval-source-map',
-
-        entry: [
-            'webpack-dev-server/client?http://localhost:8080',
-            path.join( __dirname, 'src/index.js' )
-        ],
-
-        devServer: {
-            inline:     true,
-            progress: true
-        },
-
-        module: {
-            loaders: [
-                {
-                    test: /\.(css|scss)$/,
-                    loaders: [
-                        'style-loader',
-                        'css-loader',
-                        'postcss-loader',
-                        'sass-loader'
-                    ]
-                }
-            ]
-        }
-
-    });
-}
-
-// additional webpack settings for prod env (when invoked via 'npm run build')
-if ( TARGET_ENV === 'production' ) {
-    console.log( 'Building for prod...');
-
-    module.exports = merge( commonConfig, {
-
-        devtool: 'source-map',
-
-        entry: path.join( __dirname, 'src/index.js' ),
-
-        module: {
-            loaders: [
-                {
-                    test: /\.(css|scss)$/,
-                    loader: ExtractTextPlugin.extract( 'style-loader', [
-                        'css-loader',
-                        'postcss-loader',
-                        'sass-loader'
-                    ])
-                }
-            ]
-        },
-
-        plugins: [
-            new CopyWebpackPlugin([
-                {
-                    from: 'src/img/',
-                    to:     'img/'
-                },
-                {
-                    from: 'src/favicon.ico'
-                },
-            ]),
-            // extract CSS into a separate file
-            new ExtractTextPlugin( './[hash].css', { allChunks: false } ),
-            // minify & mangle JS/CSS
-            new webpack.optimize.UglifyJsPlugin({
-                minimize:     true,
-                compressor: { warnings: false }
-                // mangle:    true
-            })
-        ]
-    });
+  });
 }
