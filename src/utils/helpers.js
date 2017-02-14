@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const gameUrl = 'https://statsapi.web.nhl.com';
 
 /**
