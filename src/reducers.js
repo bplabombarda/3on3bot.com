@@ -13,7 +13,7 @@ function selectedDate(state = `${Date.now()}`, action) {
   }
 }
 
-function posts(state = {
+function games(state = {
   isFetching: false,
   didInvalidate: false,
   items: []
@@ -39,3 +39,23 @@ function posts(state = {
       return state
   }
 }
+
+function gamesByDate(state = { }, action) {
+  switch (action.type) {
+    case INVALIDATE_DATE:
+    case RECEIVE_GAMES:
+    case REQUEST_GAMES:
+      return Object.assign({}, state, {
+        [action.date]: games(state[action.date], action)
+      })
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({
+  gamesByDate,
+  selectedDate
+})
+
+export default rootReducer
