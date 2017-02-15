@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {
   SELECT_DATE, INVALIDATE_DATE,
-  REQUEST_DATE, RECEIVE_DATE
+  REQUEST_GAMES, RECEIVE_GAMES
 } from './actions'
 
 function selectedDate(state = `${Date.now()}`, action) {

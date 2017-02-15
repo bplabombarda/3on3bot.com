@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Provicer } from 'react-redux';
+import { Provider } from 'react-redux';
 import configureStore from '../configureStore';
 import AsyncApp from './AsyncApp';
 

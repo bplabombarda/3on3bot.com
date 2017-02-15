@@ -23,14 +23,14 @@ export function invalidateDate(date) {
 
 export function requestGames(date) {
   return {
-    type: REQUEST_DATE,
+    type: REQUEST_GAMES,
     date
   };
 }
 
 export function receiveGames(date, json) {
   return {
-    type: RECEIVE_DATE,
+    type: RECEIVE_GAMES,
     date,
     games: json.dates[0].games.map(game => game.content.link),
     receivedAt: Date.now()
