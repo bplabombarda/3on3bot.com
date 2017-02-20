@@ -24,19 +24,19 @@ const commonConfig = {
 
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        use: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              rules: { semi: 0 }
-            }
-          }
-        ]
-      },
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   enforce: 'pre',
+      //   use: [
+      //     {
+      //       loader: 'eslint-loader',
+      //       options: {
+      //         rules: { semi: 0 }
+      //       }
+      //     }
+      //   ]
+      // },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,

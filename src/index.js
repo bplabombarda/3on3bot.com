@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import App from './components/App';
-import Demo from './components/Demo';
+import { render } from 'react-dom';
+import Root from './containers/Root';
+// import Demo from './components/Demo';
 
 
-ReactDOM.render(
-    // <App />,
-    <Demo />,
+render(
+    <Root />,
+    // <Demo />,
     document.getElementById('main')
 );
