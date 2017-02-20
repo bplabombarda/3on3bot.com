@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
+import moment from 'moment';
 import {
   SELECT_DATE, INVALIDATE_DATE,
   REQUEST_GAMES, RECEIVE_GAMES
 } from './actions'
 
-function selectedDate(state = `${Date.now()}`, action) {
+function selectedDate(state = moment(), action) {
   switch (action.type) {
     case SELECT_DATE:
       return action.date

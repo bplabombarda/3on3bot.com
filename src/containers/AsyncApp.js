@@ -4,10 +4,12 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import { selectDate, fetchGamesIfNeeded, invalidateDate } from '../actions';
 
+require('react-datepicker/dist/react-datepicker.css');
+
 class AsyncApp extends Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
   }
 
   componentDidMount() {
@@ -22,28 +24,30 @@ class AsyncApp extends Component {
     }
   }
 
-  handleChange(nextDate) {
+  handleDateChange(nextDate) {
     this.props.dispatch(selectDate(nextDate))
     this.props.dispatch(fetchGamesIfNeeded(nextDate))
   }
 
   render() {
-    const { selectedDate, games, isFetching, lastUpdated } = this.props
+    const { selectedDate, gamesByDate, isFetching, lastUpdated } = this.props
+    console.log(gamesByDate)
     return (
       <div>
         <DatePicker
-          dateFormat="MM-DD-YY"
+          dateFormat="MM-DD-YYYY"
           selected={moment(selectedDate)}
           onChange={this.handleDateChange}
         />
+
       </div>
     );
   }
 }
 
 AsyncApp.propTypes = {
-  selectedDate: PropTypes.string.isRequired,
-  games: PropTypes.array.isRequired,
+  selectedDate: PropTypes.object.isRequired,
+  games: PropTypes.array,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
@@ -54,7 +58,6 @@ function mapStateToProps(state) {
   const {
     isFetching,
     lastUpdated,
-    items: posts
   } = gamesByDate[selectedDate] || {
     isFetching: true,
     items: []
@@ -62,7 +65,7 @@ function mapStateToProps(state) {
 
   return {
     selectedDate,
-    posts,
+    gamesByDate,
     isFetching,
     lastUpdated
   }
