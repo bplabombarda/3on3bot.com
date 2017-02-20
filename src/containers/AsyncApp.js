@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import Games from '../components/Games';
 import { selectDate, fetchGamesIfNeeded, invalidateDate } from '../actions';
 
 require('react-datepicker/dist/react-datepicker.css');
@@ -30,8 +31,7 @@ class AsyncApp extends Component {
   }
 
   render() {
-    const { selectedDate, gamesByDate, isFetching, lastUpdated } = this.props
-    console.log(gamesByDate)
+    const { selectedDate, gamesByDate, isFetching, lastUpdated } = this.props;
     return (
       <div>
         <DatePicker
@@ -39,7 +39,25 @@ class AsyncApp extends Component {
           selected={moment(selectedDate)}
           onChange={this.handleDateChange}
         />
-
+        <p>
+          {lastUpdated &&
+            <span>
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+              {' '}
+            </span>
+          }
+        </p>
+        {isFetching && gamesByDate[selectedDate] &&
+          <h2>Loading...</h2>
+        }
+        {!isFetching && gamesByDate[selectedDate].items.length === 0 &&
+          <h2>Empty.</h2>
+        }
+        {!isFetching && gamesByDate[selectedDate].items.length > 0 &&
+          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+            <Games games={gamesByDate[selectedDate].items} />
+          </div>
+        }
       </div>
     );
   }
@@ -47,7 +65,7 @@ class AsyncApp extends Component {
 
 AsyncApp.propTypes = {
   selectedDate: PropTypes.object.isRequired,
-  games: PropTypes.array,
+  gamesByDate: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
