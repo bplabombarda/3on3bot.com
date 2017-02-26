@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import Player from '../components/Player';
 import Games from '../components/Games';
 import { selectDate, fetchGamesIfNeeded, invalidateDate } from '../actions';
 
@@ -39,10 +40,11 @@ class AsyncApp extends Component {
           selected={moment(selectedDate)}
           onChange={this.handleDateChange}
         />
+        {/* <Player /> */}
         <p>
           {lastUpdated &&
             <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.          
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
             </span>
           }
         </p>

@@ -40,7 +40,7 @@ export function receiveGames(date, json) {
 function fetchGames(date) {
   return dispatch => {
     dispatch(requestGames(date))
-    return fetch(`${apiRoot}/api/v1/schedule?startDate=${date.format('YYYY-MM-DD')}&endDate=${date.format('YYYY-MM-DD')}&expand=schedule.teams,schedule.linescore`)
+    return fetch(`${apiRoot}/api/v1/schedule?startDate=${date.format('YYYY-MM-DD')}&endDate=${date.format('YYYY-MM-DD')}&expand=schedule.teams,schedule.linescore,schedule.game.content.media.milestones`)
       .then(response => response.json())
       .then(json => dispatch(receiveGames(date, json)));
   };

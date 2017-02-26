@@ -9,12 +9,11 @@ export default class Game extends Component {
     const awayClasses = `team away away-${away.abbreviation}`;
     const homeClasses = `team home home-${home.abbreviation}`;
     return (
-      <li>
-        <div className="matchup">
+      <li className="matchup">
+        <a>
           <span className={awayClasses}>{away.abbreviation}</span>
-          {' vs '}
           <span className={homeClasses}>{home.abbreviation}</span>
-        </div>
+        </a>
       </li>
     )
   }
