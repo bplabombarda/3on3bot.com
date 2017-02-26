@@ -32,7 +32,7 @@ export function receiveGames(date, json) {
   return {
     type: RECEIVE_GAMES,
     date,
-    games: json.dates[0].games.map(game => game.content.link),
+    games: json.dates[0].games,
     receivedAt: Date.now()
   };
 }
@@ -40,7 +40,7 @@ export function receiveGames(date, json) {
 function fetchGames(date) {
   return dispatch => {
     dispatch(requestGames(date))
-    return fetch(`${apiRoot}/api/v1/schedule?startDate=${date.format('YYYY-MM-DD')}&endDate=${date.format('YYYY-MM-DD')}`)
+    return fetch(`${apiRoot}/api/v1/schedule?startDate=${date.format('YYYY-MM-DD')}&endDate=${date.format('YYYY-MM-DD')}&expand=schedule.teams,schedule.linescore`)
       .then(response => response.json())
       .then(json => dispatch(receiveGames(date, json)));
   };
@@ -62,5 +62,5 @@ export function fetchGamesIfNeeded(date) {
     if (shouldFetchGames(getState(), date)) {
       return dispatch(fetchGames(date))
     }
-  }
+  };
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 
-require('./Player.scss');
+// require('./Player.scss');
 
-function Player(props) {
+export default function Player(props) {
   return (
     <div id="frameContainer">
       <iframe
@@ -20,13 +20,6 @@ function Player(props) {
 }
 
 Player.propTypes = {
-  source: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
+  source: React.PropTypes.string,
+  title: React.PropTypes.string,
 };
-
-Player.defaultProps = {
-  source: 'media/jetsons.mp4',
-  title: 'LAK@STL: Schwartz\'s overtime winner',
-};
-
-module.exports = Player;

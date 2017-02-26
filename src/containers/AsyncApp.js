@@ -42,8 +42,7 @@ class AsyncApp extends Component {
         <p>
           {lastUpdated &&
             <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.          
             </span>
           }
         </p>
@@ -54,7 +53,7 @@ class AsyncApp extends Component {
           <h2>Empty.</h2>
         }
         {!isFetching && gamesByDate[selectedDate].items.length > 0 &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <div className="gamesContainer" style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Games games={gamesByDate[selectedDate].items} />
           </div>
         }
