@@ -14,12 +14,10 @@ export default function Player(props) {
         scrolling="no"
         allowFullScreen
       />
-      <h3 className="videoTitle">{props.title}</h3>
     </div>
   );
 }
 
 Player.propTypes = {
-  source: React.PropTypes.string,
-  title: React.PropTypes.string,
+  source: React.PropTypes.string
 };

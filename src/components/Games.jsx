@@ -16,5 +16,6 @@ export default class Games extends Component {
 }
 
 Games.propTypes = {
-  games: PropTypes.array.isRequired
+  games: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired
 }
