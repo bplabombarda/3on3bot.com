@@ -2,4 +2,18 @@ header {
   padding: 1.5em;
   background: #009AD8;
   margin-bottom: 1em;
+
+  input[type="text"] {
+    border: none;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'VT323';
+    width: 150px;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
 }

@@ -1,7 +1,9 @@
 .gamesList {
-  list-style: none;
-  padding: 0;
+  width: 100%;
+  max-width: 960px;
+  display: block;
+  margin: 0 auto;
   li {
-    margin: 1em 0;
+    margin: 1em;
   }
 }
