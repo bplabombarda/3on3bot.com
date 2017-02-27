@@ -1,13 +1,21 @@
 .matchup {
-
+  display: inline-block;
+  height: 100%;
+  cursor: pointer;
 }
 
 .team {
-    font-size: 21px;
-    background: black;
-    color: lightgreen;
-    padding: 15px 0;
-    display: inline-block;
-    width: 90px;
-    text-align: center;
+  font-size: 2em;
+  padding: 15px 0;
+  display: inline-block;
+  width: 90px;
+  text-align: center;
+  &.away {
+    background: #00529C;
+    color: #FDB930;
+  }
+  &.home {
+    background: #98012E;
+    color: #EEE3C7;
+  }
 }

@@ -4,7 +4,7 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import Player from '../components/Player';
 import Games from '../components/Games';
-import { selectDate, fetchGamesIfNeeded, invalidateDate } from '../actions';
+import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions';
 
 require('react-datepicker/dist/react-datepicker.css');
 
@@ -12,6 +12,7 @@ class AsyncApp extends Component {
   constructor(props) {
     super(props);
     this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleSelectGame = this.handleSelectGame.bind(this)
   }
 
   componentDidMount() {
@@ -29,6 +30,10 @@ class AsyncApp extends Component {
   handleDateChange(nextDate) {
     this.props.dispatch(selectDate(nextDate))
     this.props.dispatch(fetchGamesIfNeeded(nextDate))
+  }
+
+  handleSelectGame(mediaUrl) {
+    this.props.dispatch(selectGame(mediaUrl))
   }
 
   render() {
@@ -52,11 +57,14 @@ class AsyncApp extends Component {
           <h2>Loading...</h2>
         }
         {!isFetching && gamesByDate[selectedDate].items.length === 0 &&
-          <h2>Empty.</h2>
+          <h2>No OT Games Today.</h2>
         }
         {!isFetching && gamesByDate[selectedDate].items.length > 0 &&
           <div className="gamesContainer" style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Games games={gamesByDate[selectedDate].items} />
+            <Games
+              games={gamesByDate[selectedDate].items}
+              onSelect={this.handleSelectGame}
+            />
           </div>
         }
       </div>

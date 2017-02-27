@@ -8,9 +8,7 @@ export default class Games extends Component {
     return (
       <ul className="gamesList">
         {this.props.games.map((game, i) => {
-          if(game.linescore.currentPeriod === 4) {
-            return <Game key={game.gamePk} game={game} />
-          }
+          return <Game key={game.gamePk} game={game} handleSelectGame={this.props.onSelect}/>
         })}
       </ul>
     )
