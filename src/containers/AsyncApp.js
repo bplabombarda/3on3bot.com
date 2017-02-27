@@ -2,14 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
-import { selectDate, fetchGamesIfNeeded, invalidateDate } from '../actions';
+import Player from '../components/Player';
+import Games from '../components/Games';
+import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions';
 
 require('react-datepicker/dist/react-datepicker.css');
+require('../components/Main.scss');
 
 class AsyncApp extends Component {
   constructor(props) {
     super(props);
     this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleSelectGame = this.handleSelectGame.bind(this)
   }
 
   componentDidMount() {
@@ -29,17 +33,45 @@ class AsyncApp extends Component {
     this.props.dispatch(fetchGamesIfNeeded(nextDate))
   }
 
+  handleSelectGame(mediaUrl) {
+    this.props.dispatch(selectGame(mediaUrl))
+  }
+
   render() {
-    const { selectedDate, gamesByDate, isFetching, lastUpdated } = this.props
-    console.log(gamesByDate)
+    const { selectedDate, gamesByDate, isFetching, lastUpdated, selectedGame } = this.props;
     return (
       <div>
-        <DatePicker
-          dateFormat="MM-DD-YYYY"
-          selected={moment(selectedDate)}
-          onChange={this.handleDateChange}
-        />
-
+        <header>
+          <DatePicker
+            dateFormat="MM-DD-YYYY"
+            selected={moment(selectedDate)}
+            onChange={this.handleDateChange}
+          />
+        </header>
+        {selectedGame &&
+          <Player source={selectedGame} />
+        }
+        {/* <p>
+          {lastUpdated &&
+            <span>
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+            </span>
+          }
+        </p> */}
+        {isFetching && gamesByDate[selectedDate] &&
+          <h2>Loading...</h2>
+        }
+        {!isFetching && gamesByDate[selectedDate].items.length === 0 &&
+          <h2>No OT Games Today.</h2>
+        }
+        {!isFetching && gamesByDate[selectedDate].items.length > 0 &&
+          <div className="gamesContainer" style={{ opacity: isFetching ? 0.5 : 1 }}>
+            <Games
+              games={gamesByDate[selectedDate].items}
+              onSelect={this.handleSelectGame}
+            />
+          </div>
+        }
       </div>
     );
   }
@@ -47,14 +79,14 @@ class AsyncApp extends Component {
 
 AsyncApp.propTypes = {
   selectedDate: PropTypes.object.isRequired,
-  games: PropTypes.array,
+  gamesByDate: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  const { selectedDate, gamesByDate } = state
+  const { selectedDate, gamesByDate, selectedGame } = state
   const {
     isFetching,
     lastUpdated,
@@ -65,6 +97,7 @@ function mapStateToProps(state) {
 
   return {
     selectedDate,
+    selectedGame,
     gamesByDate,
     isFetching,
     lastUpdated
