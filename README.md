@@ -9,4 +9,4 @@
 -  `npm run build`: clean `dist` directory and build app.
 -  `npm run watch`: watch with webpack.
 
-![Rosie](src/images/rosie.jpg)
+![Rosie](src/assets/images/rosie.jpg)
