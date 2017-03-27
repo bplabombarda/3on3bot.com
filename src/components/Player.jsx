@@ -1,19 +1,17 @@
 import React from 'react';
 
-// require('./Player.scss');
+require('./Player.scss');
 
 export default function Player(props) {
   return (
-    <div id="frameContainer">
-      <iframe
+    <div className="frameContainer">
+      <video
         id="vidFrame"
         src={props.source}
-        height="360"
-        width="640"
-        frameBorder="0"
-        scrolling="no"
-        allowFullScreen
-      />
+        controls
+        autoPlay
+      >
+      </video>
     </div>
   );
 }

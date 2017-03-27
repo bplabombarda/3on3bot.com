@@ -1,7 +1,7 @@
 header {
-  padding: 1.5em;
+  padding: 1.6em 0;
   background: #009AD8;
-  margin-bottom: 1em;
+  margin-bottom: 1.6em;
 
   input[type="text"] {
     border: none;
@@ -15,5 +15,11 @@ header {
     &:focus {
       outline: none;
     }
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    margin: 0;
   }
 }
