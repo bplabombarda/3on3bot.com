@@ -12,12 +12,14 @@
   display: inline-block;
   width: 90px;
   text-align: center;
-  // &.away {
-  //   background: #00529C;
-  //   color: #FDB930;
-  // }
-  // &.home {
-  //   background: #98012E;
-  //   color: #EEE3C7;
-  // }
+}
+
+@media (max-width: 640px) {
+  .matchup {
+    width: 100%;
+  }
+  
+  .team {
+    width: 50%;
+  }
 }

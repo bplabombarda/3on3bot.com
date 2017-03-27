@@ -7,7 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // detemine build env
-var ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
+console.log(process.env)
+const ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
 const commonConfig = {
   output: {
@@ -135,8 +136,8 @@ if ( ENV === 'prod') {
     plugins: [
       new CopyWebpackPlugin([
         {
-          from: 'src/images/',
-          to:   'images/'
+          from: 'src/assets/',
+          to:   'assets/'
         },
       ]),
       // new ExtractTextPlugin({

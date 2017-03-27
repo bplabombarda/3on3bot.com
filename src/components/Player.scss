@@ -1,12 +1,10 @@
-#frameContainer {
-    margin: 0 auto;
+.frameContainer {
+  #vidFrame {
     display: block;
+    position: relative;
     width: 100%;
     max-width: 640px;
-    padding-bottom: 56.25%;
-    iframe {
-        position: relative;
-        top: 0;
-        left: 0;
-    }
+    height: auto;
+    margin: 0 auto;
+  }
 }
