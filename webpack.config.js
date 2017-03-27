@@ -136,8 +136,8 @@ if ( ENV === 'prod') {
     plugins: [
       new CopyWebpackPlugin([
         {
-          from: 'src/images/',
-          to:   'images/'
+          from: 'src/assets/',
+          to:   'assets/'
         },
       ]),
       // new ExtractTextPlugin({
