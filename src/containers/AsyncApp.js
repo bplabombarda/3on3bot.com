@@ -42,6 +42,7 @@ class AsyncApp extends Component {
     return (
       <div>
         <header>
+          <span>Choose a date:</span>
           <DatePicker
             dateFormat="MM-DD-YYYY"
             selected={moment(selectedDate)}
@@ -77,13 +78,13 @@ class AsyncApp extends Component {
   }
 }
 
-AsyncApp.propTypes = {
-  selectedDate: PropTypes.object.isRequired,
-  gamesByDate: PropTypes.object,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
-}
+// AsyncApp.propTypes = {
+//   selectedDate: PropTypes.object.isRequired,
+//   gamesByDate: PropTypes.object,
+//   isFetching: PropTypes.bool.isRequired,
+//   lastUpdated: PropTypes.number,
+//   dispatch: PropTypes.func.isRequired
+// }
 
 function mapStateToProps(state) {
   const { selectedDate, gamesByDate, selectedGame } = state

@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // detemine build env
-console.log(process.env)
 const ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
 const commonConfig = {

@@ -31,7 +31,7 @@ export default class Game extends Component {
   }
 }
 
-Game.propTypes = {
-  game: PropTypes.object.isRequired,
-  handleSelectGame: PropTypes.func.isRequired
-}
+// Game.propTypes = {
+//   game: PropTypes.object.isRequired,
+//   handleSelectGame: PropTypes.func.isRequired
+// }

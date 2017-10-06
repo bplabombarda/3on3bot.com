@@ -16,6 +16,6 @@ export default function Player(props) {
   );
 }
 
-Player.propTypes = {
-  source: React.PropTypes.string
-};
+// Player.propTypes = {
+//   source: React.PropTypes.string
+// };

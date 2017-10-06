@@ -4,22 +4,13 @@
   display: inline-block;
   height: 100%;
   cursor: pointer;
+	border-bottom: 5px solid;
 }
 
 .team {
-  font-size: 2em;
+  font-size: 3em;
   padding: 15px 0;
   display: inline-block;
-  width: 90px;
+  width: 50%;
   text-align: center;
-}
-
-@media (max-width: 640px) {
-  .matchup {
-    width: 100%;
-  }
-  
-  .team {
-    width: 50%;
-  }
 }

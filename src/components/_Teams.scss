@@ -1,146 +1,291 @@
 .team.away-ANA {
-  color: #F57D31;
+  color: #000000;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #F57D31,
+  1px -1px 0 #F57D31,
+  -1px 1px 0 #F57D31,
+  1px 1px 0 #F57D31;
 }
 
 .team.home-ANA {
-  color: #F57D31;
+  color: #FFFFFF;
   background: #000000;
+  text-shadow:
+  -1px -1px 0 #F57D31,
+  1px -1px 0 #F57D31,
+  -1px 1px 0 #F57D31,
+  1px 1px 0 #F57D31;
 }
 
 .team.away-ARI {
   color: #98012E;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-ARI {
   color: #EEE3C7;
   background: #98012E;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.away-BOS {
-  color: #FDB930;
+  color: #000000;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #FDB930,
+  1px -1px 0 #FDB930,
+  -1px 1px 0 #FDB930,
+  1px 1px 0 #FDB930;
 }
 
 .team.home-BOS {
   color: #FDB930;
   background: #000000;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-BUF {
   color: #002D62;
-  background: #FDB930;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #FDB930,
+  1px -1px 0 #FDB930,
+  -1px 1px 0 #FDB930,
+  1px 1px 0 #FDB930;
 }
 
 .team.home-BUF {
   color: #FDB930;
   background: #002D62;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-CGY {
   color: #CB0D0D;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #FDBF12,
+  1px -1px 0 #FDBF12,
+  -1px 1px 0 #FDBF12,
+  1px 1px 0 #FDBF12;
 }
 
 .team.home-CGY {
-  color: #FDBF12;
+  color: #000000;
   background: #CB0D0D;
+  text-shadow:
+  -1px -1px 0 #FDBF12,
+  1px -1px 0 #FDBF12,
+  -1px 1px 0 #FDBF12,
+  1px 1px 0 #FDBF12;
 }
 
 .team.away-CAR {
   color: #E51A38;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-CAR {
   color: #000000;
   background: #E51A38;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-CHI {
   color: #C60C30;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-CHI {
   color: #000000;
   background: #C60C30;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-COL {
-  color: #822433;
+  color: #000000;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #165788,
+  1px -1px 0 #165788,
+  -1px 1px 0 #165788,
+  1px 1px 0 #165788;
 }
 
 .team.home-COL {
-  color: #165788;
+  color: #FFFFFF;
   background: #822433;
+  text-shadow:
+  -1px -1px 0 #165788,
+  1px -1px 0 #165788,
+  -1px 1px 0 #165788,
+  1px 1px 0 #165788;
 }
 
 .team.away-CBJ {
   color: #002147;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #C60C30,
+  1px -1px 0 #C60C30,
+  -1px 1px 0 #C60C30,
+  1px 1px 0 #C60C30;
 }
 
 .team.home-CBJ {
-  color: #C60C30;
+  color: #FFFFFF;
   background: #002147;
+  text-shadow:
+  -1px -1px 0 #C60C30,
+  1px -1px 0 #C60C30,
+  -1px 1px 0 #C60C30,
+  1px 1px 0 #C60C30;
 }
 
 .team.away-DAL {
   color: #016F4A;
   background: #FFFFFF;
+  // text-shadow:
+  // -1px -1px 0 #016F4A,
+  // 1px -1px 0 #016F4A,
+  // -1px 1px 0 #016F4A,
+  // 1px 1px 0 #016F4A;
 }
 
 .team.home-DAL {
   color: #FFFFFF;
   background: #016F4A;
+  // text-shadow:
+  // -1px -1px 0 #FFFFFF,
+  // 1px -1px 0 #FFFFFF,
+  // -1px 1px 0 #FFFFFF,
+  // 1px 1px 0 #FFFFFF;
 }
 
 .team.away-DET {
   color: #E51837;
   background: #FFFFFF;
+  // text-shadow:
+  // -1px -1px 0 #E51837,
+  // 1px -1px 0 #E51837,
+  // -1px 1px 0 #E51837,
+  // 1px 1px 0 #E51837;
 }
 
 .team.home-DET {
   color: #FFFFFF;
   background: #E51837;
+  // text-shadow:
+  // -1px -1px 0 #FFFFFF,
+  // 1px -1px 0 #FFFFFF,
+  // -1px 1px 0 #FFFFFF,
+  // 1px 1px 0 #FFFFFF;
 }
 
 .team.away-EDM {
   color: #013E7F;
-  background: #EB6E1E;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #EB6E1E,
+  1px -1px 0 #EB6E1E,
+  -1px 1px 0 #EB6E1E,
+  1px 1px 0 #EB6E1E;
 }
 
 .team.home-EDM {
-  color: #EB6E1E;
-  background: #013E7F;
+  color: #013E7F;
+  background: #EB6E1E;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-FLA {
-  color: #C51230;
+  color: #002D62;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #F1B310,
+  1px -1px 0 #F1B310,
+  -1px 1px 0 #F1B310,
+  1px 1px 0 #F1B310;
 }
 
 .team.home-FLA {
-  color: #F1B310;
+  color: #002D62;
   background: #C51230;
+  text-shadow:
+  -1px -1px 0 #F1B310,
+  1px -1px 0 #F1B310,
+  -1px 1px 0 #F1B310,
+  1px 1px 0 #F1B310;
 }
 
 .team.away-LAK {
   color: #B2B7BB;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-LAK {
-  color: #B2B7BB;
+  color: #FFFFFF;
   background: #000000;
+  text-shadow:
+  -1px -1px 0 #B2B7BB,
+  1px -1px 0 #B2B7BB,
+  -1px 1px 0 #B2B7BB,
+  1px 1px 0 #B2B7BB;
 }
 
 .team.away-MIN {
-  color: #004F30;
+  color: #C51230;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #004F30,
+  1px -1px 0 #004F30,
+  -1px 1px 0 #004F30,
+  1px 1px 0 #004F30;
 }
 
 .team.home-MIN {
@@ -150,158 +295,321 @@
 
 .team.away-MTL {
   color: #002D62;
-  background: #C51230;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #C51230,
+  1px -1px 0 #C51230,
+  -1px 1px 0 #C51230,
+  1px 1px 0 #C51230;
 }
 
 .team.home-MTL {
-  color: #C51230;
-  background: #002D62;
+  color: #FFFFFF;
+  background: #C51230;
+  text-shadow:
+  -1px -1px 0 #002D62,
+  1px -1px 0 #002D62,
+  -1px 1px 0 #002D62,
+  1px 1px 0 #002D62;
 }
 
 .team.away-NSH {
   color: #002D62;
   background: #FDBB30;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.home-NSH {
-  color: #FDBB30;
+  color: #FFFFFF;
   background: #002D62;
+  text-shadow:
+  -1px -1px 0 #FDBB30,
+  1px -1px 0 #FDBB30,
+  -1px 1px 0 #FDBB30,
+  1px 1px 0 #FDBB30;
 }
 
 .team.away-NJD {
   color: #E03A3E;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-NJD {
-  color: #000000;
+  color: #FFFFFF;
   background: #E03A3E;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
+
 }
 
 .team.away-NYI {
   color: #00529B;
-  background: #F57D31;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #F57D31,
+  1px -1px 0 #F57D31,
+  -1px 1px 0 #F57D31,
+  1px 1px 0 #F57D31;
 }
 
 .team.home-NYI {
-  color: #F57D31;
+  color: #FFFFFF;
   background: #00529B;
+  text-shadow:
+  -1px -1px 0 #F57D31,
+  1px -1px 0 #F57D31,
+  -1px 1px 0 #F57D31,
+  1px 1px 0 #F57D31;
 }
 
 .team.away-NYR {
   color: #0161AB;
   background: #FFFFFF;
+  text-shadow:
+  -2px 0px 0 #E51837,
+  0px 0px 0 #E51837,
+  -2px 2px 0 #E51837,
+  0px 2px 0 #E51837;
 }
 
 .team.home-NYR {
   color: #E51837;
   background: #0161AB;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-OTT {
   color: #E51837;
-  background: #000000;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-OTT {
-  color: #E51837;
-  background: #000000;
+  color: #FFFFFF;
+  background: #E51837;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.away-PHI {
-  color: #000000;
-  background: #F4793E;
+  color: #F4793E;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-PHI {
-  color: #F4793E;
-  background: #000000;
+  color: #FFFFFF;
+  background: #F4793E;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.away-PIT {
   color: #000000;
-  background: #FCBA41;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #FCBA41,
+  1px -1px 0 #FCBA41,
+  -1px 1px 0 #FCBA41,
+  1px 1px 0 #FCBA41;
 }
 
 .team.home-PIT {
   color: #FCBA41;
   background: #000000;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-STL {
   color: #00529C;
-  background: #FDB930;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #FDB930,
+  1px -1px 0 #FDB930,
+  -1px 1px 0 #FDB930,
+  1px 1px 0 #FDB930;
 }
 
 .team.home-STL {
   color: #FDB930;
   background: #00529C;
+  text-shadow:
+  -1px -1px 0 #FFFFFF,
+  1px -1px 0 #FFFFFF,
+  -1px 1px 0 #FFFFFF,
+  1px 1px 0 #FFFFFF;
 }
 
 .team.away-SJS {
   color: #007889;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.home-SJS {
-  color: #007889;
-  background: #000000;
+  color: #FFFFFF;
+  background: #007889;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .team.away-TBL {
   color: #003D7C;
   background: #FFFFFF;
+  // text-shadow:
+  // -1px -1px 0 #003D7C,
+  // 1px -1px 0 #003D7C,
+  // -1px 1px 0 #003D7C,
+  // 1px 1px 0 #003D7C;
 }
 
 .team.home-TBL {
   color: #FFFFFF;
   background: #003D7C;
+  // text-shadow:
+  // -1px -1px 0 #FFFFFF,
+  // 1px -1px 0 #FFFFFF,
+  // -1px 1px 0 #FFFFFF,
+  // 1px 1px 0 #FFFFFF;
 }
 
 .team.away-TOR {
   color: #013E7F;
   background: #FFFFFF;
+  // text-shadow:
+  // -1px -1px 0 #013E7F,
+  // 1px -1px 0 #013E7F,
+  // -1px 1px 0 #013E7F,
+  // 1px 1px 0 #013E7F;
 }
 
 .team.home-TOR {
   color: #FFFFFF;
   background: #013E7F;
+  // text-shadow:
+  // -1px -1px 0 #FFFFFF,
+  // 1px -1px 0 #FFFFFF,
+  // -1px 1px 0 #FFFFFF,
+  // 1px 1px 0 #FFFFFF;
 }
 
 .team.away-VAN {
   color: #003E7E;
   background: #FFFFFF;
+  // text-shadow:
+  // -1px -1px 0 #003E7E,
+  // 1px -1px 0 #003E7E,
+  // -1px 1px 0 #003E7E,
+  // 1px 1px 0 #003E7E;
 }
 
 .team.home-VAN {
-  color: #008852;
+  color: #FFFFFF;
   background: #003E7E;
+  // text-shadow:
+  // -1px -1px 0 #FFFFFF,
+  // 1px -1px 0 #FFFFFF,
+  // -1px 1px 0 #FFFFFF,
+  // 1px 1px 0 #FFFFFF;
 }
 
 .team.away-VGK {
-
+  color: #333F48;
+  background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #89734C,
+  1px -1px 0 #89734C,
+  -1px 1px 0 #89734C,
+  1px 1px 0 #89734C;
 }
 
 .team.home-VGK {
-
+  color: #FFFFFF;
+  background: #333F48;
+  text-shadow:
+  -1px -1px 0 #89734C,
+  1px -1px 0 #89734C,
+  -1px 1px 0 #89734C,
+  1px 1px 0 #89734C;
 }
 
-.team.away-WAS {
+.team.away-WSH {
   color: #C60C30;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #002147,
+  1px -1px 0 #002147,
+  -1px 1px 0 #002147,
+  1px 1px 0 #002147;
 }
 
-.team.home-WAS {
-  color: #002147;
+.team.home-WSH {
+  color: #FFFFFF;
   background: #C60C30;
+  text-shadow:
+  -1px -1px 0 #002147,
+  1px -1px 0 #002147,
+  -1px 1px 0 #002147,
+  1px 1px 0 #002147;
 }
 
 .team.away-WPG {
-  color: #006EC8;
+  color: #002D62;
   background: #FFFFFF;
+  text-shadow:
+  -1px -1px 0 #006EC8,
+  1px -1px 0 #006EC8,
+  -1px 1px 0 #006EC8,
+  1px 1px 0 #006EC8;
 }
 
 .team.home-WPG {
   color: #FFFFFF;
-  background: #006EC8;
+  background: #002D62;
+  text-shadow:
+  -1px -1px 0 #006EC8,
+  1px -1px 0 #006EC8,
+  -1px 1px 0 #006EC8,
+  1px 1px 0 #006EC8;
 }

@@ -1,12 +1,18 @@
 .gamesList {
   width: 100%;
-  max-width: 960px;
+  max-width: 640px;
   display: block;
   margin: 0 auto;
   padding: 0;
   list-style: none;
   li {
-    margin: 1em;
+    a {
+      width: 100%;
+      box-sizing: border-box;
+      .active {
+        border: 4px solid gold;
+      }
+    }
   }
 }
 
