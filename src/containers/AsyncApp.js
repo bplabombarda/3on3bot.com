@@ -65,6 +65,9 @@ class AsyncApp extends Component {
         {!isFetching && gamesByDate[selectedDate].items.length === 0 &&
           <h2>No OT Games Today.</h2>
         }
+        {!isFetching && selectedDate.isAfter(moment()) &&
+          <img src="../../assets/images/future.gif" alt="placeholder+image" />
+        }
         {!isFetching && gamesByDate[selectedDate].items.length > 0 &&
           <div className="gamesContainer" style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Games
