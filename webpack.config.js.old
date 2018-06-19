@@ -4,30 +4,49 @@ const merge             = require('webpack-merge');
 const autoprefixer      = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const prod = process.env.NODE_ENV === 'production' ? true : false || false;
+// detemine build env
+const ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
 const commonConfig = {
   output: {
     path:   resolve(__dirname, 'dist'),
-    pathinfo: !prod,
+    pathinfo: !ENV.prod,
+    //  publicPath: '',
   },
 
   context: resolve(__dirname),
 
-  devtool: prod ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: ENV.prod ? 'source-map' : 'cheap-module-eval-source-map',
 
-  bail: prod,
+  bail: ENV.prod,
 
   module: {
     rules: [
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   enforce: 'pre',
+      //   use: [
+      //     {
+      //       loader: 'eslint-loader',
+      //       options: {
+      //         rules: { semi: 0 }
+      //       }
+      //     }
+      //   ]
+      // },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          {
-            loader: 'babel-loader'
-          }
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'es2015', 'stage-0']
+          },
+        }
         ],
       },
       {
@@ -62,7 +81,35 @@ const commonConfig = {
   }
 }
 
-if (prod) {
+if ( ENV === 'dev') {
+  console.log( 'Serving locally...');
+
+  module.exports = merge( commonConfig, {
+    entry: [
+      'webpack-dev-server/client?http://localhost:8080',
+      resolve(__dirname, 'src/index.js'),
+    ],
+
+    output: {
+      filename: 'js/bundle.js',
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.(css|scss)$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'sass-loader',
+          ]
+        }
+      ]
+    },
+  });
+}
+
+if ( ENV === 'prod') {
   console.log( 'Building for prod...');
 
   module.exports = merge( commonConfig, {
@@ -102,31 +149,5 @@ if (prod) {
         // mangle:  true
       }),
     ],
-  });
-} else {
-  console.log( 'Serving locally...');
-
-  module.exports = merge( commonConfig, {
-    entry: [
-      'webpack-dev-server/client?http://localhost:8080',
-      resolve(__dirname, 'src/index.js'),
-    ],
-
-    output: {
-      filename: 'js/bundle.js',
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.(css|scss)$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader',
-          ]
-        }
-      ]
-    },
   });
 }
