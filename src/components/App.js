@@ -1,5 +1,8 @@
 this.state = {
+	gamesByDate: {},
   isFetching: false,
   didInvalidate: false,
-  items: []
+  lastUpdated: null,
+  selectedDate: null,
+  selectedGame: {}
 }
