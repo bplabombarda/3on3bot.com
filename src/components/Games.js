@@ -1,5 +1,5 @@
-import React, { PropTypes, Component } from 'react'
-import Game from './Game'
+import React, { Component } from 'react';
+import Game from './Game';
 
 require('./Games.scss');
 
@@ -11,11 +11,6 @@ export default class Games extends Component {
           return <Game key={game.gamePk} game={game} handleSelectGame={this.props.onSelect}/>
         })}
       </ul>
-    )
+    );
   }
-}
-
-// Games.propTypes = {
-//   games: PropTypes.array.isRequired,
-//   onSelect: PropTypes.func.isRequired
-// }
+};

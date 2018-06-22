@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Root from './containers/Root';
-// import Demo from './components/Demo';
+import App from './containers/App';
 
+require('./index.scss');
 
 render(
-    <Root />,
-    // <Demo />,
+    <App />,
     document.getElementById('main')
 );

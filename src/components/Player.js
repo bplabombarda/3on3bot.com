@@ -14,7 +14,7 @@ export default function Player(props) {
       </video>
     </div>
   );
-}
+};
 
 // Player.propTypes = {
 //   source: React.PropTypes.string
