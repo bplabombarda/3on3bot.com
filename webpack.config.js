@@ -5,7 +5,7 @@ const autoprefixer      = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const prod = process.env.NODE_ENV === 'production' ? true : false || false;
+const prod = process.env.NODE_ENV === 'production';
 
 const commonConfig = {
   output: {

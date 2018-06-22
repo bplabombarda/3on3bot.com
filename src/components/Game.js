@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react';
 
 require('./Game.scss');
 
@@ -27,11 +27,6 @@ export default class Game extends Component {
           <span className={homeClasses}>{home.abbreviation}</span>
         </a>
       </li>
-    )
+    );
   }
-}
-
-// Game.propTypes = {
-//   game: PropTypes.object.isRequired,
-//   handleSelectGame: PropTypes.func.isRequired
-// }
+};
