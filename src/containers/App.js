@@ -13,7 +13,6 @@ export default class App extends Component {
 			gamesByDate: {},
 			isFetching: false,
 			didInvalidate: false,
-			lastUpdated: null,
 			selectedDate: moment(),
 			selectedGame: {}
 		};
@@ -36,14 +35,19 @@ export default class App extends Component {
 	    .then(games => console.log(games))
 	}
 
-	handleDateChange(nextDate) {
-		console.log(this.state)
+	handleDateChange(date) {
 		this.setState({
-			selectedDate: moment(nextDate)
+			selectedDate: moment(date)
 		})
 	}
 
+	handleSelectGame(game) {
+		console.log(game);
+	}
+
 	render() {
+		const { selectedDate, gamesByDate, isFetching, selectedGame } = this.state;
+
 		return (
 			<DatePicker
 				dateFormat="MM-DD-YYYY"
