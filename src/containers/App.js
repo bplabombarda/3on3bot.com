@@ -4,6 +4,8 @@ import moment from 'moment';
 
 import { fetchGames } from '../utils/statsapi';
 
+require('react-datepicker/dist/react-datepicker.css');
+
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -47,6 +49,7 @@ export default class App extends Component {
 				dateFormat="MM-DD-YYYY"
 				selected={moment(this.state.selectedDate)}
 				onChange={this.handleDateChange}
+				todayButton={"Today"}
 				className=""
 			/>
 		);
