@@ -4,7 +4,7 @@ import {
   SELECT_DATE, INVALIDATE_DATE,
   REQUEST_GAMES, RECEIVE_GAMES,
   SELECT_GAME
-} from './actions'
+} from '../actions/actions';
 
 function selectedDate(state = moment(), action) {
   switch (action.type) {

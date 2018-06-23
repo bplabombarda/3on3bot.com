@@ -1,4 +1,8 @@
 {
+  "name": "3on3bot.com",
+  "version": "0.1.0",
+  "description": "A website for 3on3bot.",
+  "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline --content-base src/",
     "clean": "rimraf dist **/*.min.css",
@@ -6,6 +10,13 @@
     "prod": "npm run clean && npm run build",
     "lint": "eslint ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:bplabombarda/3on3bot.com.git"
+  },
+  "homepage": "https://github/bplabombarda/3on3bot.com#readme",
+  "author": "Brett LaBombarda",
+  "license": "MIT",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "moment": "^2.22.2",

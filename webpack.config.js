@@ -18,6 +18,10 @@ const commonConfig = {
 
   devtool: ENV.prod ? 'source-map' : 'cheap-module-eval-source-map',
 
+  devServer: {
+    stats: 'minimal'
+  },
+
   bail: ENV.prod,
 
   module: {
@@ -67,6 +71,8 @@ if ( ENV === 'dev') {
   console.log( 'Serving locally...');
 
   module.exports = merge( commonConfig, {
+    mode: 'development',
+
     entry: [
       'webpack-dev-server/client?http://localhost:8080',
       resolve(__dirname, 'src/index.js'),
@@ -95,6 +101,8 @@ if ( ENV === 'prod') {
   console.log( 'Building for prod...');
 
   module.exports = merge( commonConfig, {
+    mode: 'production',
+
     entry: resolve(__dirname, 'src/index.js'),
 
     output: {

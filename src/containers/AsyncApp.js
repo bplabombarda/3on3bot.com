@@ -4,7 +4,7 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import Player from '../components/Player';
 import Games from '../components/Games';
-import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions';
+import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions/actions';
 
 require('react-datepicker/dist/react-datepicker.css');
 require('../styles/Main.styl');
@@ -42,7 +42,7 @@ class AsyncApp extends Component {
     return (
       <div>
         <header>
-          <span>Choose a date:</span>
+          <span>Choose a date, motherfucker:</span>
           <DatePicker
             dateFormat="MM-DD-YYYY"
             selected={moment(selectedDate)}
