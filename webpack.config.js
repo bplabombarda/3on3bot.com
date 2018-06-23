@@ -4,7 +4,6 @@ const merge             = require('webpack-merge');
 const autoprefixer      = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
@@ -140,4 +139,4 @@ if ( ENV === 'prod') {
       }),
     ],
   });
-}
+} 

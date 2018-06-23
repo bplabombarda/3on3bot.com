@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import moment from 'moment';
 import {
   SELECT_DATE, INVALIDATE_DATE,
@@ -68,6 +68,6 @@ const rootReducer = combineReducers({
   gamesByDate,
   selectedDate,
   selectedGame
-})
+});
 
-export default rootReducer
+export default rootReducer;

@@ -7,7 +7,7 @@ import Games from '../components/Games';
 import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions/actions';
 
 require('react-datepicker/dist/react-datepicker.css');
-require('../styles/Main.styl');
+require('../styles/App.styl');
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -90,14 +90,14 @@ class AsyncApp extends Component {
 // }
 
 function mapStateToProps(state) {
-  const { selectedDate, gamesByDate, selectedGame } = state
+  const { selectedDate, gamesByDate, selectedGame } = state;
   const {
     isFetching,
     lastUpdated,
   } = gamesByDate[selectedDate] || {
     isFetching: true,
     items: []
-  }
+  };
 
   return {
     selectedDate,
@@ -105,7 +105,7 @@ function mapStateToProps(state) {
     gamesByDate,
     isFetching,
     lastUpdated
-  }
+  };
 }
 
-export default connect(mapStateToProps)(AsyncApp)
+export default connect(mapStateToProps)(AsyncApp);

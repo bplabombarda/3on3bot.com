@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import Game from './Game';
 
 require('../styles/Games.styl');
@@ -11,6 +11,6 @@ export default class Games extends Component {
           return <Game key={game.gamePk} game={game} handleSelectGame={this.props.onSelect}/>
         })}
       </ul>
-    )
+    );
   }
 };
