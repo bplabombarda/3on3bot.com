@@ -1,6 +1,6 @@
 import React from 'react';
 
-require('../styles/Player.styl');
+require('../styles/Player.scss');
 
 export default function Player(props) {
   return (

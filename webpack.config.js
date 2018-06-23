@@ -62,7 +62,7 @@ const commonConfig = {
   ],
 
   resolve: {
-    extensions: [".js", ".json", ".css", ".styl"]
+    extensions: [".js", ".json", ".css", ".scss"]
   }
 }
 
@@ -84,11 +84,11 @@ if ( ENV === 'dev') {
     module: {
       rules: [
         {
-          test: /\.(css|styl)$/,
+          test: /\.(css|scss)$/,
           use: [
             'style-loader',
             'css-loader',
-            'stylus-loader',
+            'sass-loader',
           ]
         }
       ]
@@ -111,11 +111,11 @@ if ( ENV === 'prod') {
     module: {
       rules: [
         {
-          test: /\.(css|styl)$/,
+          test: /\.(css|scss)$/,
           use: [
             'style-loader',
             'css-loader',
-            'stylus-loader',
+            'sass-loader',
           ]
         }
       ]

@@ -1,0 +1,25 @@
+.gamesList {
+  width: 100%;
+  max-width: 640px;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  li {
+    a {
+      width: 100%;
+      box-sizing: border-box;
+      .active {
+        border: 4px solid gold;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .gamesList {
+    li {
+      margin: 0;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-require('../styles/Game.styl');
+require('../styles/Game.scss');
 
 export default class Game extends Component {
   constructor(props) {

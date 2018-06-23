@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Game from './Game';
 
-require('../styles/Games.styl');
+require('../styles/Games.scss');
 
 export default class Games extends Component {
   render() {
