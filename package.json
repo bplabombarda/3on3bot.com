@@ -1,7 +1,7 @@
 {
   "name": "3on3bot.com",
   "version": "0.1.0",
-  "description": "Website for 3on3bot.",
+  "description": "A website for 3on3bot.",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline --content-base src/",
@@ -12,8 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:bplabombarda/3on3bot.com.git"
+    "url": "git+ssh://git@github.com:bplabombarda/3on3bot.com.git"
   },
+  "homepage": "https://github/bplabombarda/3on3bot.com#readme",
   "author": "Brett LaBombarda",
   "license": "MIT",
   "dependencies": {
@@ -22,8 +23,12 @@
     "react": "^16.4.1",
     "react-datepicker": "^1.5.0",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
@@ -39,12 +44,12 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",
+    "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
-    "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",

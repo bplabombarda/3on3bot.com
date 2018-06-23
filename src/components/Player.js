@@ -1,6 +1,6 @@
 import React from 'react';
 
-require('./Player.scss');
+require('../styles/Player.styl');
 
 export default function Player(props) {
   return (
@@ -15,7 +15,3 @@ export default function Player(props) {
     </div>
   );
 };
-
-// Player.propTypes = {
-//   source: React.PropTypes.string
-// };

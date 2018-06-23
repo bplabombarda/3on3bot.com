@@ -5,19 +5,23 @@ const autoprefixer      = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const prod = process.env.NODE_ENV === 'production';
+const ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
 const commonConfig = {
   output: {
     path:   resolve(__dirname, 'dist'),
-    pathinfo: !prod,
+    pathinfo: !ENV.prod,
   },
 
   context: resolve(__dirname),
 
-  devtool: prod ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: ENV.prod ? 'source-map' : 'cheap-module-eval-source-map',
 
-  bail: prod,
+  devServer: {
+    stats: 'minimal'
+  },
+
+  bail: ENV.prod,
 
   module: {
     rules: [
@@ -58,14 +62,46 @@ const commonConfig = {
   ],
 
   resolve: {
-    extensions: [".js", ".json", ".jsx", ".css", ".scss"]
+    extensions: [".js", ".json", ".css", ".styl"]
   }
 }
 
-if (prod) {
+if ( ENV === 'dev') {
+  console.log( 'Serving locally...');
+
+  module.exports = merge( commonConfig, {
+    mode: 'development',
+
+    entry: [
+      'webpack-dev-server/client?http://localhost:8080',
+      resolve(__dirname, 'src/index.js'),
+    ],
+
+    output: {
+      filename: 'js/bundle.js',
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.(css|styl)$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'stylus-loader',
+          ]
+        }
+      ]
+    },
+  });
+}
+
+if ( ENV === 'prod') {
   console.log( 'Building for prod...');
 
   module.exports = merge( commonConfig, {
+    mode: 'production',
+
     entry: resolve(__dirname, 'src/index.js'),
 
     output: {
@@ -75,11 +111,11 @@ if (prod) {
     module: {
       rules: [
         {
-          test: /\.(css|scss)$/,
+          test: /\.(css|styl)$/,
           use: [
             'style-loader',
             'css-loader',
-            'sass-loader',
+            'stylus-loader',
           ]
         }
       ]
@@ -103,30 +139,4 @@ if (prod) {
       }),
     ],
   });
-} else {
-  console.log( 'Serving locally...');
-
-  module.exports = merge( commonConfig, {
-    entry: [
-      'webpack-dev-server/client?http://localhost:8080',
-      resolve(__dirname, 'src/index.js'),
-    ],
-
-    output: {
-      filename: 'js/bundle.js',
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.(css|scss)$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader',
-          ]
-        }
-      ]
-    },
-  });
-}
+} 

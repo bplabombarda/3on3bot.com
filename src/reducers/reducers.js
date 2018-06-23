@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import moment from 'moment';
 import {
   SELECT_DATE, INVALIDATE_DATE,
   REQUEST_GAMES, RECEIVE_GAMES,
   SELECT_GAME
-} from './actions'
+} from '../actions/actions';
 
 function selectedDate(state = moment(), action) {
   switch (action.type) {
@@ -68,6 +68,6 @@ const rootReducer = combineReducers({
   gamesByDate,
   selectedDate,
   selectedGame
-})
+});
 
-export default rootReducer
+export default rootReducer;
