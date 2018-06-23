@@ -1,6 +1,6 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes, Component } from 'react';
 
-require('./Game.scss');
+require('../styles/Game.styl');
 
 export default class Game extends Component {
   constructor(props) {
@@ -29,9 +29,4 @@ export default class Game extends Component {
       </li>
     )
   }
-}
-
-// Game.propTypes = {
-//   game: PropTypes.object.isRequired,
-//   handleSelectGame: PropTypes.func.isRequired
-// }
+};

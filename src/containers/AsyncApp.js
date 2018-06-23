@@ -7,7 +7,7 @@ import Games from '../components/Games';
 import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions';
 
 require('react-datepicker/dist/react-datepicker.css');
-require('../components/Main.scss');
+require('../styles/Main.styl');
 
 class AsyncApp extends Component {
   constructor(props) {

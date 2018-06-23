@@ -6,14 +6,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// detemine build env
 const ENV = process.env.npm_lifecycle_event === 'build' ? 'prod' : 'dev';
 
 const commonConfig = {
   output: {
     path:   resolve(__dirname, 'dist'),
     pathinfo: !ENV.prod,
-    //  publicPath: '',
   },
 
   context: resolve(__dirname),
@@ -24,29 +22,13 @@ const commonConfig = {
 
   module: {
     rules: [
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   enforce: 'pre',
-      //   use: [
-      //     {
-      //       loader: 'eslint-loader',
-      //       options: {
-      //         rules: { semi: 0 }
-      //       }
-      //     }
-      //   ]
-      // },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            presets: ['react', 'es2015', 'stage-0']
-          },
-        }
+          {
+            loader: 'babel-loader'
+          }
         ],
       },
       {
@@ -77,7 +59,7 @@ const commonConfig = {
   ],
 
   resolve: {
-    extensions: [".js", ".json", ".jsx", ".css", ".scss"]
+    extensions: [".js", ".json", ".css", ".styl"]
   }
 }
 
@@ -97,11 +79,11 @@ if ( ENV === 'dev') {
     module: {
       rules: [
         {
-          test: /\.(css|scss)$/,
+          test: /\.(css|styl)$/,
           use: [
             'style-loader',
             'css-loader',
-            'sass-loader',
+            'stylus-loader',
           ]
         }
       ]
@@ -122,11 +104,11 @@ if ( ENV === 'prod') {
     module: {
       rules: [
         {
-          test: /\.(css|scss)$/,
+          test: /\.(css|styl)$/,
           use: [
             'style-loader',
             'css-loader',
-            'sass-loader',
+            'stylus-loader',
           ]
         }
       ]
