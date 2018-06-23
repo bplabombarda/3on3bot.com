@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
+import Header from '../components/Header';
 import Player from '../components/Player';
 import Games from '../components/Games';
 import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions/actions';
@@ -41,14 +41,10 @@ class AsyncApp extends Component {
     const { selectedDate, gamesByDate, isFetching, lastUpdated, selectedGame } = this.props;
     return (
       <div>
-        <header>
-          <span>Choose a date, motherfucker:</span>
-          <DatePicker
-            dateFormat="MM-DD-YYYY"
-            selected={moment(selectedDate)}
-            onChange={this.handleDateChange}
-          />
-        </header>
+        <Header
+          selectedDate={selectedDate}
+          handleDateChange={this.handleDateChange}
+        />
         {selectedGame &&
           <Player source={selectedGame} />
         }
