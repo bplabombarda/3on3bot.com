@@ -48,13 +48,6 @@ class AsyncApp extends Component {
         {selectedGame &&
           <Player source={selectedGame} />
         }
-        {/* <p>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-            </span>
-          }
-        </p> */}
         {isFetching && gamesByDate[selectedDate] &&
           <h2>Loading...</h2>
         }
@@ -76,14 +69,6 @@ class AsyncApp extends Component {
     );
   }
 }
-
-// AsyncApp.propTypes = {
-//   selectedDate: PropTypes.object.isRequired,
-//   gamesByDate: PropTypes.object,
-//   isFetching: PropTypes.bool.isRequired,
-//   lastUpdated: PropTypes.number,
-//   dispatch: PropTypes.func.isRequired
-// }
 
 function mapStateToProps(state) {
   const { selectedDate, gamesByDate, selectedGame } = state;
