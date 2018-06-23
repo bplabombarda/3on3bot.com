@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import { fetchGames } from '../utils/statsapi';
 
 export default class App extends Component {
 	constructor(props) {
@@ -8,14 +12,43 @@ export default class App extends Component {
 			isFetching: false,
 			didInvalidate: false,
 			lastUpdated: null,
-			selectedDate: null,
+			selectedDate: moment(),
 			selectedGame: {}
 		};
+
+		this.handleDateChange = this.handleDateChange.bind(this);
+	}
+
+	componentDidMount() {
+		fetchGames(this.state.selectedDate)
+			.then(response => response.json())
+	    .then((json) => {
+	      const games = json.dates[0].games.filter((game) => {
+	        if (game.linescore.currentPeriod === 4) {
+	        	getGameType(game);
+	          return game;
+	        }
+	      })
+	      return games;
+	    })
+	    .then(games => console.log(games))
+	}
+
+	handleDateChange(nextDate) {
+		console.log(this.state)
+		this.setState({
+			selectedDate: moment(nextDate)
+		})
 	}
 
 	render() {
 		return (
-			<h1>Frigg off, Barb!</h1>
+			<DatePicker
+				dateFormat="MM-DD-YYYY"
+				selected={moment(this.state.selectedDate)}
+				onChange={this.handleDateChange}
+				className=""
+			/>
 		);
 	}
 };
