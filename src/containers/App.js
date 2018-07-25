@@ -42,7 +42,7 @@ class AsyncApp extends Component {
     return (
       <div>
         <header>
-          <span>Choose a date, motherfucker:</span>
+          <span>Choose a date & select a game:</span>
           <DatePicker
             dateFormat="MM-DD-YYYY"
             selected={moment(selectedDate)}

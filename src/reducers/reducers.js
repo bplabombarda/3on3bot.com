@@ -6,7 +6,7 @@ import {
   SELECT_GAME
 } from '../actions/actions';
 
-function selectedDate(state = moment(), action) {
+function selectedDate(state = moment('2018-03-14'), action) {
   switch (action.type) {
     case SELECT_DATE:
       return action.date
