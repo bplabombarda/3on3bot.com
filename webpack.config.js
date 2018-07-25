@@ -132,11 +132,6 @@ if ( ENV === 'prod') {
       //   filename: 'css/[hash].css',
       //   allChunks: false
       // }),
-      new webpack.optimize.UglifyJsPlugin({
-        minimize:   true,
-        compressor: { warnings: false }
-        // mangle:  true
-      }),
     ],
   });
 } 
