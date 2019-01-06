@@ -1,0 +1,32 @@
+{
+  "env":{
+    "browser": true,
+    "es6": true,
+    "jasmine": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions":{
+    "ecmaFeatures":{
+      "classes": true,
+      "experimentalObjectRestSpread": true,
+      "globalReturn": true,
+      "jsx": true,
+      "modules": true
+    },
+    "sourceType": "module"
+  },
+  "plugins":[
+    "react"
+  ],
+  "settings":{
+    "react":{
+      "pragma": "React",
+      "version": "16.0.0"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
+}

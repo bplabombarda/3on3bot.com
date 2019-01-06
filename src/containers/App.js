@@ -1,92 +1,23 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
-import Header from '../components/Header';
-import Player from '../components/Player';
-import Games from '../components/Games';
-import { selectDate, fetchGamesIfNeeded, selectGame } from '../actions/actions';
+import React from 'react'
 
-require('react-datepicker/dist/react-datepicker.css');
-require('../styles/App.scss');
+import getSchedule from '../utils/getSchedule'
 
-class AsyncApp extends Component {
-  constructor(props) {
-    super(props);
-    this.handleDateChange = this.handleDateChange.bind(this)
-    this.handleSelectGame = this.handleSelectGame.bind(this)
+export default class App extends React.PureComponent {
+  state = {
+    date: new Date(2016, 2, 21),
+    didInvalidate: false,
+    isFetching: false,
+    games: [],
   }
 
-  componentDidMount() {
-    const { dispatch, selectedDate } = this.props
-    dispatch(fetchGamesIfNeeded(selectedDate))
+  componentDidMount () {
+    const schedule = getSchedule(this.state.date)
+    console.log(schedule)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedDate !== this.props.selectedDate) {
-      const { dispatch, selectedDate } = nextProps
-      dispatch(fetchGamesIfNeeded(selectedDate))
-    }
-  }
-
-  handleDateChange(nextDate) {
-    this.props.dispatch(selectDate(nextDate))
-    this.props.dispatch(fetchGamesIfNeeded(nextDate))
-  }
-
-  handleSelectGame(mediaUrl) {
-    this.props.dispatch(selectGame(mediaUrl))
-  }
-
-  render() {
-    const { selectedDate, gamesByDate, isFetching, lastUpdated, selectedGame } = this.props;
+  render () {
     return (
-      <div>
-        <Header
-          selectedDate={selectedDate}
-          handleDateChange={this.handleDateChange}
-        />
-        {selectedGame &&
-          <Player source={selectedGame} />
-        }
-        {isFetching && gamesByDate[selectedDate] &&
-          <h2>Loading...</h2>
-        }
-        {!isFetching && gamesByDate[selectedDate].items.length === 0 &&
-          <h2>No OT Games Today.</h2>
-        }
-        {!isFetching && selectedDate.isAfter(moment()) &&
-          <img src="../../assets/images/future.gif" alt="placeholder+image" />
-        }
-        {!isFetching && gamesByDate[selectedDate].items.length > 0 &&
-          <div className="gamesContainer" style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Games
-              games={gamesByDate[selectedDate].items}
-              onSelect={this.handleSelectGame}
-            />
-          </div>
-        }
-      </div>
-    );
+      <h1>Test!</h1>
+    )
   }
 }
-
-function mapStateToProps(state) {
-  const { selectedDate, gamesByDate, selectedGame } = state;
-  const {
-    isFetching,
-    lastUpdated,
-  } = gamesByDate[selectedDate] || {
-    isFetching: true,
-    items: []
-  };
-
-  return {
-    selectedDate,
-    selectedGame,
-    gamesByDate,
-    isFetching,
-    lastUpdated
-  };
-}
-
-export default connect(mapStateToProps)(AsyncApp);
