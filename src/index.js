@@ -4,5 +4,5 @@ import Root from './containers/Root';
 
 render(
   <Root />,
-  document.getElementById('main')
+  document.getElementById('root')
 );

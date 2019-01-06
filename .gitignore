@@ -40,5 +40,5 @@ jspm_packages
 # JSHint
 .jshintrc
 
-# Dist
-build
+# build
+public

@@ -1,22 +1,22 @@
-global.__rootdir = require('path').resolve(__dirname, '../../')
+const ROOT_DIR = require('path').resolve(__dirname, '../../');
 
-const autoprefixer      = require('autoprefixer');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack           = require('webpack');
+const webpack = require('webpack');
 
-const IN_PATH = `${ __rootdir }/src/index.js`
-const OUT_PATH = `${ __rootdir }/build`
+const ENTRY_PATH = `${ ROOT_DIR }/src/index.js`
+const OUTPUT_PATH = `${ ROOT_DIR }/public`
 
 module.exports = {
   entry: [
-    IN_PATH
+    ENTRY_PATH
   ],
 
   output: {
-    path: OUT_PATH
+    path: OUTPUT_PATH
   },
 
-  context: __rootdir,
+  context: ROOT_DIR,
 
   module: {
     rules: [
